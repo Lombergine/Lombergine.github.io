@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aditya Garg</title>
+<meta name="description" content="Empirical economics and software. San Jose, California.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;450;500;600&display=swap">
+<style>
+  :root{
+    --paper:#FBFAF8; --surface:#FFFFFF; --ink:#16181C; --ink-soft:#565B62;
+    --ink-faint:#8C9198; --line:#E4E2DD; --line-soft:#EFEDE9;
+    --accent:#1D5142; --accent-soft:#2E6B59; --wash:#EDF2F0;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#0E100F; --surface:#171A19; --ink:#E8E9E6; --ink-soft:#A0A5A2;
+      --ink-faint:#71766F; --line:#282C2A; --line-soft:#1F2322;
+      --accent:#7FBBA5; --accent-soft:#9BCDBA; --wash:#16211D;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E100F; --surface:#171A19; --ink:#E8E9E6; --ink-soft:#A0A5A2;
+    --ink-faint:#71766F; --line:#282C2A; --line-soft:#1F2322;
+    --accent:#7FBBA5; --accent-soft:#9BCDBA; --wash:#16211D;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+    font-size:16.5px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:64px 26px 96px; display:flex; flex-direction:column; gap:52px}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a:hover{color:var(--accent-soft); border-bottom-color:var(--accent-soft)}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+  p{margin:0; max-width:64ch}
+  h1,h2,h3{margin:0; text-wrap:balance}
+
+  header{display:flex; flex-direction:column; gap:14px}
+  h1{font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:2.7rem; line-height:1.05; letter-spacing:-.015em}
+  .tagline{font-family:"Newsreader",Georgia,serif; font-size:1.22rem; line-height:1.45; color:var(--ink-soft); max-width:52ch}
+  .meta{display:flex; gap:8px; flex-wrap:wrap; align-items:center; font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink-faint); margin-top:2px}
+  .meta span.sep{color:var(--line)}
+  .meta a{border-bottom:none; color:var(--ink-soft)}
+  .meta a:hover{color:var(--accent)}
+
+  .intro p + p{margin-top:13px}
+  .intro{display:flex; flex-direction:column}
+
+  h2{font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:500; letter-spacing:.16em;
+     text-transform:uppercase; color:var(--ink-faint); padding-bottom:10px; border-bottom:1px solid var(--line)}
+
+  .work{display:flex; flex-direction:column; gap:0}
+  .item{padding:26px 0; border-bottom:1px solid var(--line-soft); display:flex; flex-direction:column; gap:9px}
+  .item:last-child{border-bottom:none; padding-bottom:4px}
+  .item-head{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap}
+  h3{font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:1.32rem; line-height:1.25}
+  .when{font-family:"IBM Plex Mono",monospace; font-size:.73rem; color:var(--ink-faint); white-space:nowrap}
+  .role{font-size:.85rem; color:var(--ink-faint); margin-top:-4px}
+  .item p{font-size:.97rem; color:var(--ink-soft)}
+  .item p b{color:var(--ink); font-weight:600}
+  .links{display:flex; gap:14px; flex-wrap:wrap; font-family:"IBM Plex Mono",monospace; font-size:.78rem; margin-top:3px}
+
+  .pull{background:var(--wash); border-left:2px solid var(--accent); padding:13px 17px; border-radius:0 5px 5px 0;
+        font-size:.92rem; color:var(--ink-soft); max-width:60ch}
+  .pull b{color:var(--ink); font-weight:600}
+  .pull code{font-family:"IBM Plex Mono",monospace; font-size:.88em}
+
+  .stack{display:flex; flex-wrap:wrap; gap:7px}
+  .stack span{font-family:"IBM Plex Mono",monospace; font-size:.76rem; color:var(--ink-soft);
+              border:1px solid var(--line); padding:4px 10px; border-radius:100px}
+
+  footer{border-top:1px solid var(--line); padding-top:22px; font-size:.9rem; color:var(--ink-soft);
+         display:flex; flex-direction:column; gap:9px}
+  footer .row{display:flex; gap:18px; flex-wrap:wrap; font-family:"IBM Plex Mono",monospace; font-size:.82rem}
+  .note{font-size:.8rem; color:var(--ink-faint)}
+
+  @media (max-width:560px){
+    .wrap{padding:44px 20px 70px; gap:42px}
+    h1{font-size:2.2rem}
+    .tagline{font-size:1.1rem}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Aditya Garg</h1>
+    <p class="tagline">I do empirical economics and build the software that makes it run. Mostly on what AI is doing to entry-level work.</p>
+    <div class="meta">
+      <span>San Jose, California</span><span class="sep">/</span>
+      <span>High school student</span><span class="sep">/</span>
+      <a href="mailto:gargaditya061@gmail.com">gargaditya061@gmail.com</a><span class="sep">/</span>
+      <a href="https://github.com/Lombergine">github.com/Lombergine</a>
+    </div>
+  </header>
+
+  <section class="intro">
+    <p>Most of my work sits at one seam: a research question that needs real data engineering to answer. I am co-authoring a 26-country panel study on AI investment and youth unemployment, and separately I build production data pipelines, large-scale scrapers, and classification systems in Python.</p>
+    <p>What I am actually looking for is a lab where the bottleneck is that nobody has time to build the thing. That is the part I am good at, and I will do it for free.</p>
+  </section>
+
+  <section>
+    <h2>Selected work</h2>
+    <div class="work">
+
+      <article class="item">
+        <div class="item-head">
+          <h3>The International Canaries</h3>
+          <span class="when">2026</span>
+        </div>
+        <p class="role">Independent replication attempt</p>
+        <p>Stanford's Digital Economy Lab found a 19% employment shortfall for 22 to 25 year olds in AI-exposed occupations, using US payroll microdata. I tried to find the same signal across 26 countries using only public World Bank and ILO data.</p>
+        <div class="pull">
+          <b>It does not replicate, and the reason is the interesting part.</b> The correlation is +0.28 (p = 0.16) and the sign flips to &minus;0.02 when Greece, Spain and Italy are dropped. The apparent signal is post-COVID recovery, not AI. The placebo on the pre-ChatGPT window is clean at +0.03, so there is no pre-trend, just no power at this resolution.
+        </div>
+        <p>Annual country-level estimates average away exactly the variation the effect lives in. The version worth building is EU-LFS occupation-by-age counts crossed with ISCO-mapped exposure scores.</p>
+        <div class="links">
+          <a href="./canaries.html">Write-up and charts</a>
+          <a href="https://github.com/Lombergine/international-canaries">Code and data</a>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-head">
+          <h3>AI investment and youth unemployment</h3>
+          <span class="when">2025 &ndash; 2026</span>
+        </div>
+        <p class="role">With Dr. Sevgi Coşkun Yılmaz &middot; manuscript in revision</p>
+        <p>A 26-country panel study on how national AI investment relates to youth labour market outcomes. Currently a 22-page manuscript in revision, targeting publication through Premiere Research Academy. An earlier paper with the same collaborator used US annual time-series data and OLS.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head">
+          <h3>Reddit intelligence system</h3>
+          <span class="when">2026</span>
+        </div>
+        <p class="role">Learner Labs &middot; intern</p>
+        <p>A social listening and marketing intelligence system covering <b>37,000+ posts</b>, with theme analysis, an automated digest, and a retrieval chatbot over the corpus. Built the Claude-model automation pipelines behind it, plus a content automation blueprint for the same team.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head">
+          <h3>RunGuard</h3>
+          <span class="when">2026</span>
+        </div>
+        <p class="role">Native iOS &middot; solo founder</p>
+        <p>An injury-prevention app for runners, built in Swift and SwiftData with HealthKit, using acute-to-chronic workload ratio modelling to flag training loads that predict injury. <b>Top 20 finalist, Ventura Challenge, Summer 2026.</b></p>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Tools</h2>
+    <div class="stack">
+      <span>Python</span><span>pandas</span><span>Swift / SwiftData</span><span>React Native</span>
+      <span>JavaScript</span><span>Java</span><span>HTML / CSS</span><span>Claude API</span>
+      <span>Vercel</span><span>Supabase</span>
+    </div>
+  </section>
+
+  <footer>
+    <div class="row">
+      <a href="mailto:gargaditya061@gmail.com">Email</a>
+      <a href="https://github.com/Lombergine">GitHub</a>
+    </div>
+    <p class="note">If you run a lab working on AI and labour markets and you have a pipeline nobody wants to maintain, that is the email.</p>
+  </footer>
+
+</div>
+</body>
+</html>
