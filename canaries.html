@@ -154,7 +154,7 @@
 
   <div class="abstract">
     <h2>Abstract</h2>
-    <p>Brynjolfsson, Chandar and Chen (2026) document a 19% relative employment decline for workers aged 22 to 25 in AI-exposed occupations, identified from US payroll microdata. I ask whether the same signal is recoverable across countries using public data, assembling a panel of 26 high-income countries observed 2019 to 2025. It is not, and the reason is instructive. Cumulative private AI investment per capita, the natural treatment variable, produces a positive slope that <b>reverses sign when three southern European countries are excluded</b>. An indicator for a native-English labour market, motivated by the fact that current language models are most capable in English, performs considerably better: the coefficient is +1.41 percentage points and retains its sign across every specification, falling to +0.76 with the 2020 unemployment shock, the pre-treatment trend and investment all controlled for. It is nonetheless never distinguishable from zero, and three defensible tests of the same contrast return <em>p</em> = 0.137, 0.053 and 0.043 depending on the variance assumption.</p>
+    <p>Brynjolfsson, Chandar and Chen (2026) document a 19% relative employment decline for workers aged 22 to 25 in AI-exposed occupations, identified from US payroll microdata. I ask whether the same signal is recoverable across countries using public data, assembling a panel of 26 high-income countries observed 2019 to 2025. It is not, and the reason is instructive. Cumulative private AI investment per capita, the natural treatment variable, produces a positive slope that <b>reverses sign when three southern European countries are excluded</b>. An indicator for a native-English labour market, motivated by the fact that current language models are most capable in English, performs considerably better: the coefficient is +1.41 percentage points and retains its sign across every specification, falling to +0.76 with the 2020 unemployment shock, the pre-treatment trend and investment all controlled for. It is nonetheless never distinguishable from zero, and three defensible tests of the same contrast return <em>p</em> = 0.137, 0.053 and 0.043 depending on the variance assumption. A dynamic event study is more damaging still: <b>the 2020 pre-treatment coefficient is +1.82 (<em>p</em> = 0.059), larger than any post-treatment coefficient</b>, so these labour markets were not flat before the treatment date and the post-2022 rise is the second half of a V rather than a break from a stable baseline.</p>
     <p>The central result is a power calculation. The minimum detectable effect at 80% power is 1.91 to 2.65 percentage points against a point estimate of 1.41, and recovering an effect of the observed magnitude would require approximately <b>43 comparable countries</b>. Fewer exist. The cross-country design is therefore underpowered by construction rather than by sample selection, and no choice of treatment variable repairs it. Identification of this effect requires within-country variation at occupation-by-age resolution.</p>
   </div>
 
@@ -229,8 +229,29 @@
     <p class="small">The placebo is reassuring without being decisive. Applying the same split to the pre-treatment window 2019&ndash;2022 gives a difference of &minus;0.90 percentage points (<em>p</em> = 0.11), so the post-2022 pattern is not a continuation of a pre-existing divergence. If anything the sign reverses across the treatment date, though a reversal is also what mean reversion would produce, and Table 2 column (2) shows the 2020 shock does not itself explain the outcome.</p>
   </section>
 
+    <section>
+    <h2><span class="num">5</span>Dynamic response and the pre-treatment problem</h2>
+    <p class="small">Section 4's placebo compares two windows. A referee will reasonably ask for the full path, so Figure 3 plots year-by-year coefficients on English relative to the 2022 baseline. If the mechanism were AI, the pre-2022 coefficients should sit flat at zero and the series should break upward after ChatGPT.</p>
+    <figure>
+      <div class="fignum"><b>Figure 3.</b> Dynamic event study, base year 2022</div>
+      <div class="cap">Coefficient on English estimated separately for each year, measured as the change in the youth penalty from that year to 2022, with 95% confidence intervals. Years to the left of the marked baseline are pre-treatment.</div>
+      <div class="cbox"><svg id="ev" viewBox="0 0 780 330" role="img" aria-label="Event study showing the English coefficient is not flat before 2022; the 2020 pre-treatment coefficient is the largest in the series"></svg></div>
+    </figure>
+    <p class="small">It does not. <b>The 2020 coefficient is +1.82 (<em>p</em> = 0.059), larger than any post-treatment coefficient and closer to conventional significance than any of them.</b> The series traces a V: English-speaking labour markets spiked in 2020, converged by 2021 and 2022, then rose again through 2025. The post-2022 increase is the recovery limb of that V, not a departure from a flat baseline.</p>
+    <p class="small">The parsimonious reading of the whole path is that these six labour markets are simply more cyclically volatile in both directions, which their weaker employment protection would predict. That is a mundane explanation and it fits the data at least as well as a language mechanism. This is the strongest single piece of evidence in the paper against the interpretation of Section 4, and it came from a test built to support it.</p>
+
+    <div class="tblock">
+      <div class="tnum"><b>Table 4.</b> Sensitivity to the 2025 ILO nowcast</div>
+      <div class="tbox"><table class="plain">
+        <thead><tr><th>Treatment window</th><th>&beta;</th><th>SE</th><th>p</th><th>&beta; controlled</th><th>p</th></tr></thead>
+        <tbody id="nc"></tbody>
+      </table></div>
+      <p class="tnote"><b>Notes.</b> The 2025 values are ILO nowcasts rather than observed rates, so the second row drops 2025 entirely and re-estimates on observed data only. The estimate is unchanged (+1.445 against +1.405), which answers the objection: model smoothing is not generating the result. The third row shortens the window to a single post-treatment year and the coefficient falls to +0.42, as a shorter exposure window should.</p>
+    </div>
+  </section>
+
   <section>
-    <h2><span class="num">5</span>Inference</h2>
+    <h2><span class="num">6</span>Inference</h2>
     <p class="small">The contrast in column (1) can be tested three defensible ways. They do not agree.</p>
     <div class="tblock">
       <div class="tnum"><b>Table 3.</b> The same contrast under three variance assumptions</div>
@@ -245,7 +266,7 @@
   </section>
 
   <section>
-    <h2><span class="num">6</span>Statistical power</h2>
+    <h2><span class="num">7</span>Statistical power</h2>
     <p class="small">The preceding sections describe a design that cannot reject. It is worth asking what it could ever have rejected.</p>
     <div class="grid">
       <div class="box"><span class="n" id="pw1"></span><span class="l">Point estimate on English, percentage points</span></div>
@@ -257,10 +278,11 @@
   </section>
 
   <section>
-    <h2><span class="num">7</span>Limitations</h2>
+    <h2><span class="num">8</span>Limitations</h2>
     <ul class="lim">
       <li><b>English is confounded with institutions.</b> Six treated units, all Anglo liberal-market economies. The design cannot separate language from employment protection, and I do not claim it does.</li>
-      <li><b>Three post-treatment observations,</b> one of which is a nowcast rather than an observed rate.</li>
+      <li><b>The pre-treatment path is not flat.</b> Figure 3 shows a larger English coefficient in 2020 than in any post-treatment year. Cyclical volatility in these labour markets is a sufficient explanation for the whole series, and this design cannot rule it out.</li>
+      <li><b>Three post-treatment observations.</b> Dropping the 2025 nowcast leaves the estimate unchanged (Table 4), so smoothing is not the issue, but the window is short regardless.</li>
       <li><b>The outcome is too coarse.</b> One observation per country-year averages away the occupation-by-age variation the effect is defined on.</li>
       <li><b>Modelled ILO estimates</b> are smoothed and are not national-definition unemployment rates.</li>
       <li><b>The dose-response test fails.</b> Ranking the seventeen non-native European countries by EF English Proficiency Index gives <em>&rho;</em> = +0.12 (<em>p</em> = 0.65) against the post-2022 change, and a larger <em>&rho;</em> = +0.46 against the placebo window. A mechanism linear in proficiency should have appeared here and did not, which is evidence against the language interpretation. Sources disagree on EF levels, so only ranks were used.</li>
@@ -268,11 +290,11 @@
   </section>
 
   <section>
-    <h2><span class="num">8</span>What would settle it</h2>
+    <h2><span class="num">9</span>What would settle it</h2>
     <p class="small">The power calculation implies that adding countries is not the fix. Adding resolution within countries is:</p>
     <ol>
       <li><b>Occupation-by-age employment counts</b> from EU-LFS or national labour force surveys at quarterly frequency, crossed with an ISCO-mapped AI exposure measure. This relocates the identifying variation inside countries, where there is enough of it, and reproduces the Canaries design outside the United States. It is tractable with public EU-LFS microdata access and is the extension I would build next.</li>
-      <li><b>Exposure defined on tasks rather than nationality.</b> The share of a country's employment in occupations whose output is English-language, which would separate language from the Anglo institutional bundle that defeats Section 5.</li>
+      <li><b>Exposure defined on tasks rather than nationality.</b> The share of a country's employment in occupations whose output is English-language, which would separate language from the Anglo institutional bundle that defeats Section 6.</li>
       <li><b>Payroll microdata outside the United States.</b> The reason the original design works is ADP. No public equivalent exists, and that remains the binding constraint.</li>
     </ol>
   </section>
@@ -310,7 +332,7 @@
 </div>
 <div class="tip" id="tip"></div>
 
-<script id="D" type="application/json">{"r":[["AUS","Australia",147.1,4.74,5.52,0.78,1,0],["AUT","Austria",217.9,5.33,5.42,0.08,0,0],["BEL","Belgium",84.3,10.84,11.87,1.03,0,0],["CAN","Canada",363.5,4.8,6.89,2.09,1,0],["CHE","Switzerland",444.2,2.71,4.17,1.46,0,0],["CZE","Czechia",45.9,4.5,6.39,1.9,0,1],["DEU","Germany",155.7,2.91,3.15,0.24,0,0],["DNK","Denmark",167.3,6.1,6.21,0.11,0,0],["ESP","Spain",61.4,16.68,14.37,-2.31,0,0],["FIN","Finland",177.9,7.42,12.02,4.6,0,0],["FRA","France",160.5,10.55,11.35,0.79,0,0],["GBR","United Kingdom",404.2,6.82,9.9,3.08,1,0],["GRC","Greece",48.1,18.86,12.85,-6.01,0,1],["HUN","Hungary",52.3,6.96,9.68,2.73,0,1],["IRL","Ireland",370.7,4.92,5.86,0.94,1,0],["ISR","Israel",1499.7,3.02,2.54,-0.48,0,0],["ITA","Italy",17.0,15.63,14.15,-1.48,0,0],["JPN","Japan",48.4,1.82,1.45,-0.37,0,0],["KOR","South Korea",173.9,3.78,4.01,0.23,0,0],["NLD","Netherlands",166.7,4.12,4.96,0.84,0,0],["NOR","Norway",179.5,6.68,8.79,2.11,0,0],["NZL","New Zealand",94.5,6.06,9.28,3.22,1,1],["POL","Poland",13.7,7.75,7.72,-0.03,0,1],["PRT","Portugal",93.5,13.04,14.06,1.01,0,0],["SWE","Sweden",662.3,14.18,15.62,1.44,0,0],["USA","United States",1385.3,4.46,5.14,0.69,1,0]],"s":[["English only",1.405,-0.477,3.287,0.1365,0.0435,0.09],["+ 2020 youth shock",1.246,-0.762,3.254,0.2119,0.1368,0.101],["+ pre-ChatGPT trend",1.301,-0.687,3.289,0.1891,0.1109,0.097],["+ both",1.152,-0.961,3.264,0.2704,0.2598,0.108],["+ log AI investment p.c.",1.058,-0.978,3.094,0.2935,0.145,0.124],["+ everything",0.762,-1.521,3.045,0.4952,0.4927,0.145]],"t":{"classical":{"t":1.54,"p":0.1365,"df":24},"welch":{"t":2.09,"p":0.0527,"df":15.8},"robust_hc1":{"t":2.13,"p":0.0435,"df":24}},"pl":{"diff":-0.896,"t":-1.71,"p":0.1097},"pw":{"mde":2.65,"mde_r":1.91,"beta":1.405,"n_needed":43,"n_have":26,"ratio":1.9},"ff":[-1.7374,0.4917],"fd":[1.3575,-0.0231],"rt":{"rows":[{"l":"Native-English labour market","c":[[1.405,0.912,0.659,""],[1.246,0.971,0.808,""],[1.301,0.961,0.785,""],[1.152,1.019,0.996,""],[1.058,0.984,0.701,""],[0.762,1.098,1.092,""]]},{"l":"2020 youth unemployment shock","c":[null,[0.171,0.315,0.387,""],null,[0.166,0.322,0.387,""],null,[0.152,0.323,0.374,""]]},{"l":"Pre-ChatGPT change (2019\u201322)","c":[null,null,[-0.116,0.279,0.36,""],[-0.11,0.284,0.35,""],null,[-0.15,0.288,0.339,""]]},{"l":"Log AI investment per capita","c":[null,null,null,null,[0.346,0.365,0.331,""],[0.367,0.381,0.364,""]]},{"l":"Constant","c":[[0.394,0.438,0.481,""],[0.164,0.615,0.71,""],[0.382,0.447,0.484,""],[0.159,0.627,0.725,""],[-1.254,1.792,1.821,""],[-1.573,1.907,2.178,""]]}],"n":[26,26,26,26,26,26],"r2":[0.09,0.101,0.097,0.108,0.124,0.145],"adj":[0.052,0.023,0.018,-0.014,0.048,-0.018]}}</script>
+<script id="D" type="application/json">{"r":[["AUS","Australia",147.1,4.74,5.52,0.78,1,0],["AUT","Austria",217.9,5.33,5.42,0.08,0,0],["BEL","Belgium",84.3,10.84,11.87,1.03,0,0],["CAN","Canada",363.5,4.8,6.89,2.09,1,0],["CHE","Switzerland",444.2,2.71,4.17,1.46,0,0],["CZE","Czechia",45.9,4.5,6.39,1.9,0,1],["DEU","Germany",155.7,2.91,3.15,0.24,0,0],["DNK","Denmark",167.3,6.1,6.21,0.11,0,0],["ESP","Spain",61.4,16.68,14.37,-2.31,0,0],["FIN","Finland",177.9,7.42,12.02,4.6,0,0],["FRA","France",160.5,10.55,11.35,0.79,0,0],["GBR","United Kingdom",404.2,6.82,9.9,3.08,1,0],["GRC","Greece",48.1,18.86,12.85,-6.01,0,1],["HUN","Hungary",52.3,6.96,9.68,2.73,0,1],["IRL","Ireland",370.7,4.92,5.86,0.94,1,0],["ISR","Israel",1499.7,3.02,2.54,-0.48,0,0],["ITA","Italy",17.0,15.63,14.15,-1.48,0,0],["JPN","Japan",48.4,1.82,1.45,-0.37,0,0],["KOR","South Korea",173.9,3.78,4.01,0.23,0,0],["NLD","Netherlands",166.7,4.12,4.96,0.84,0,0],["NOR","Norway",179.5,6.68,8.79,2.11,0,0],["NZL","New Zealand",94.5,6.06,9.28,3.22,1,1],["POL","Poland",13.7,7.75,7.72,-0.03,0,1],["PRT","Portugal",93.5,13.04,14.06,1.01,0,0],["SWE","Sweden",662.3,14.18,15.62,1.44,0,0],["USA","United States",1385.3,4.46,5.14,0.69,1,0]],"s":[["English only",1.405,-0.477,3.287,0.1365,0.0435,0.09],["+ 2020 youth shock",1.246,-0.762,3.254,0.2119,0.1368,0.101],["+ pre-ChatGPT trend",1.301,-0.687,3.289,0.1891,0.1109,0.097],["+ both",1.152,-0.961,3.264,0.2704,0.2598,0.108],["+ log AI investment p.c.",1.058,-0.978,3.094,0.2935,0.145,0.124],["+ everything",0.762,-1.521,3.045,0.4952,0.4927,0.145]],"t":{"classical":{"t":1.54,"p":0.1365,"df":24},"welch":{"t":2.09,"p":0.0527,"df":15.8},"robust_hc1":{"t":2.13,"p":0.0435,"df":24}},"pl":{"diff":-0.896,"t":-1.71,"p":0.1097},"pw":{"mde":2.65,"mde_r":1.91,"beta":1.405,"n_needed":43,"n_have":26,"ratio":1.9},"ff":[-1.7374,0.4917],"fd":[1.3575,-0.0231],"rt":{"rows":[{"l":"Native-English labour market","c":[[1.405,0.912,0.659,""],[1.246,0.971,0.808,""],[1.301,0.961,0.785,""],[1.152,1.019,0.996,""],[1.058,0.984,0.701,""],[0.762,1.098,1.092,""]]},{"l":"2020 youth unemployment shock","c":[null,[0.171,0.315,0.387,""],null,[0.166,0.322,0.387,""],null,[0.152,0.323,0.374,""]]},{"l":"Pre-ChatGPT change (2019\u201322)","c":[null,null,[-0.116,0.279,0.36,""],[-0.11,0.284,0.35,""],null,[-0.15,0.288,0.339,""]]},{"l":"Log AI investment per capita","c":[null,null,null,null,[0.346,0.365,0.331,""],[0.367,0.381,0.364,""]]},{"l":"Constant","c":[[0.394,0.438,0.481,""],[0.164,0.615,0.71,""],[0.382,0.447,0.484,""],[0.159,0.627,0.725,""],[-1.254,1.792,1.821,""],[-1.573,1.907,2.178,""]]}],"n":[26,26,26,26,26,26],"r2":[0.09,0.101,0.097,0.108,0.124,0.145],"adj":[0.052,0.023,0.018,-0.014,0.048,-0.018]},"nc":[["2022->2025 (baseline, includes nowcast)",1.405,0.912,0.1365,0.762,0.4952],["2022->2024 (observed data only)",1.445,0.914,0.127,0.899,0.4239],["2022->2023 (observed, 1 year)",0.422,0.478,0.3862,0.18,0.7568]],"ev":[[2019,0.896,-0.503,2.295,0.1986,0],[2020,1.823,-0.078,3.724,0.0593,0],[2021,0.089,-1.232,1.409,0.8906,0],[2022,0.0,0.0,0.0,null,1],[2023,0.422,-0.565,1.409,0.3862,0],[2024,1.445,-0.441,3.331,0.127,0],[2025,1.405,-0.477,3.287,0.1365,0]]}</script>
 <script>
 (function(){
   var D=JSON.parse(document.getElementById('D').textContent);
@@ -356,6 +378,14 @@
     [[nm[k],0],[f2(t.t),0],[String(t.df),1],[t.p.toFixed(3),0],[t.p<0.05?'yes':'no',1]].forEach(function(c){
       var td=document.createElement('td'); td.textContent=c[0]; if(c[1])td.className='ns'; tr.appendChild(td);});
     tt.appendChild(tr);
+  });
+
+  var ncb=document.getElementById('nc');
+  D.nc.forEach(function(r){
+    var tr=document.createElement('tr');
+    [[r[0],0],[f3(r[1]),0],['('+r[2].toFixed(3)+')',1],[r[3].toFixed(3),1],[f3(r[4]),0],[r[5].toFixed(3),1]].forEach(function(c){
+      var td=document.createElement('td'); td.textContent=c[0]; if(c[1])td.className='ns'; tr.appendChild(td);});
+    ncb.appendChild(tr);
   });
 
   var tip=document.getElementById('tip');
@@ -453,6 +483,41 @@
         fill:C('--ink-faint'),'font-size':'10','font-family':'IBM Plex Mono, monospace'});
       vl.textContent=(av<0.05?'':p.d>=0?'+':'−')+av.toFixed(1); s.appendChild(vl);
     });
+  })();
+
+  (function(){
+    var s=document.getElementById('ev'),W=780,H=330,L=62,R=30,T=26,B=54,iw=W-L-R,ih=H-T-B;
+    var yrs=D.ev.map(function(e){return e[0]}), y0=-1.6, y1=4.2;
+    var X=function(i){return L+(i+0.5)/yrs.length*iw},
+        Y=function(v){return T+(y1-v)/(y1-y0)*ih};
+    [-1,0,1,2,3,4].forEach(function(v){var z=v===0;
+      s.appendChild(E('line',{x1:L,x2:L+iw,y1:Y(v),y2:Y(v),stroke:z?C('--ink-faint'):C('--line-soft'),'stroke-width':z?1.2:1}));
+      var t=E('text',{x:L-10,y:Y(v)+4,'text-anchor':'end',fill:C('--ink-faint'),'font-size':'11','font-family':'IBM Plex Mono, monospace'});
+      t.textContent=(v>0?'+':v<0?'−':'')+Math.abs(v); s.appendChild(t);});
+    var bi=D.ev.findIndex(function(e){return e[5]===1});
+    s.appendChild(E('line',{x1:X(bi),x2:X(bi),y1:T-6,y2:T+ih,stroke:C('--frag'),'stroke-width':1.2,'stroke-dasharray':'4 4','stroke-opacity':.7}));
+    var bl=E('text',{x:X(bi),y:T-12,'text-anchor':'middle',fill:C('--frag'),'font-size':'10','font-family':'IBM Plex Mono, monospace'});
+    bl.textContent='baseline'; s.appendChild(bl);
+    D.ev.forEach(function(e,i){
+      var yr=e[0],b=e[1],lo=e[2],hi=e[3],pv=e[4],base=e[5]===1,x=X(i);
+      var t=E('text',{x:x,y:H-B+21,'text-anchor':'middle',fill:C('--ink-faint'),'font-size':'11','font-family':'IBM Plex Mono, monospace'});
+      t.textContent=yr; s.appendChild(t);
+      if(!base){
+        var col=yr<2022?C('--frag'):C('--accent');
+        s.appendChild(E('line',{x1:x,x2:x,y1:Y(lo),y2:Y(hi),stroke:col,'stroke-width':2,'stroke-opacity':.42,'stroke-linecap':'round'}));
+        [lo,hi].forEach(function(v){s.appendChild(E('line',{x1:x-4,x2:x+4,y1:Y(v),y2:Y(v),stroke:col,'stroke-width':2,'stroke-opacity':.42}));});
+        var dot=E('circle',{cx:x,cy:Y(b),r:5,fill:col});
+        bind(dot,null,'<b>'+yr+(yr<2022?' (pre-treatment)':'')+'<\/b><br>β = '+f2(b)+' pp<br>95% CI ['+f2(lo)+', '+f2(hi)+']<br>p = '+pv.toFixed(3));
+        dot.setAttribute('aria-label',yr+' coefficient '+b);
+        s.appendChild(dot);
+      } else {
+        s.appendChild(E('circle',{cx:x,cy:Y(0),r:4,fill:'none',stroke:C('--ink-faint'),'stroke-width':1.5}));
+      }
+    });
+    var ay=E('text',{x:15,y:T+ih/2,'text-anchor':'middle',fill:C('--ink-soft'),'font-size':'12',transform:'rotate(-90 15 '+(T+ih/2)+')'});
+    ay.textContent='β on English (pp)'; s.appendChild(ay);
+    var n=E('text',{x:L,y:H-8,fill:C('--ink-faint'),'font-size':'10.5'});
+    n.textContent='rust = pre-treatment years; the 2020 coefficient is the largest in the series'; s.appendChild(n);
   })();
 })();
 </script>
