@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The International Canaries</title>
-<meta name="description" content="Why no cross-country study can detect the AI entry-level employment effect, with the sample size that would be required.">
+<meta name="description" content="A 26-country replication attempt of the Canaries finding on AI and youth employment, and a power calculation showing why the cross-country design cannot settle it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600&display=swap">
 <style>
   :root{
     --paper:#FBFAF8; --surface:#FFFFFF; --ink:#16181C; --ink-soft:#565B62;
@@ -33,76 +33,112 @@
   html{-webkit-text-size-adjust:100%}
   body{margin:0; background:var(--paper); color:var(--ink);
     font-family:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
-    font-size:16.5px; line-height:1.65; -webkit-font-smoothing:antialiased}
-  .wrap{max-width:820px; margin:0 auto; padding:26px 26px 96px; display:flex; flex-direction:column; gap:46px}
+    font-size:16.5px; line-height:1.66; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:800px; margin:0 auto; padding:26px 26px 100px; display:flex; flex-direction:column; gap:40px}
   a{color:var(--accent); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
   a:hover{color:var(--accent-soft)}
   a:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
-  p{margin:0; max-width:66ch}
+  p{margin:0; max-width:68ch}
   h1,h2,h3{margin:0; text-wrap:balance}
   .back{font-family:"IBM Plex Mono",monospace; font-size:.78rem}
   .back a{color:var(--ink-soft); border-bottom-color:var(--line)}
-  header{display:flex; flex-direction:column; gap:12px}
-  h1{font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:2.5rem; line-height:1.06; letter-spacing:-.015em}
-  .sub{font-family:"Newsreader",Georgia,serif; font-size:1.18rem; line-height:1.45; color:var(--ink-soft); max-width:58ch}
-  .byline{font-family:"IBM Plex Mono",monospace; font-size:.76rem; color:var(--ink-faint)}
-  section{display:flex; flex-direction:column; gap:15px}
-  h2{font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:1.45rem; line-height:1.2}
-  .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-faint)}
-  .hd{display:flex; flex-direction:column; gap:4px}
-  .small{font-size:.93rem; color:var(--ink-soft)}
-  .small b{color:var(--ink); font-weight:600}
 
-  .verdict{background:var(--wash); border-left:2px solid var(--accent); border-radius:0 6px 6px 0;
-           padding:18px 22px; display:flex; flex-direction:column; gap:10px}
-  .verdict .tag{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.14em;
-                text-transform:uppercase; color:var(--accent); font-weight:600}
-  .verdict b{font-weight:600}
-  .verdict .big{font-family:"Newsreader",Georgia,serif; font-size:1.3rem; line-height:1.4}
+  .title{display:flex; flex-direction:column; gap:11px; text-align:center; padding-bottom:4px}
+  h1{font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:2.45rem; line-height:1.1; letter-spacing:-.012em}
+  .authorline{font-family:"Newsreader",Georgia,serif; font-size:1.06rem; color:var(--ink)}
+  .datemeta{font-family:"IBM Plex Mono",monospace; font-size:.73rem; color:var(--ink-faint); letter-spacing:.02em}
+
+  .abstract{background:var(--surface); border:1px solid var(--line); border-radius:7px;
+            padding:22px 26px; display:flex; flex-direction:column; gap:11px; margin:0 auto; max-width:96%}
+  .abstract h2{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.16em;
+               text-transform:uppercase; color:var(--ink-faint); font-weight:500}
+  .abstract p{font-size:.95rem; line-height:1.62; max-width:none; color:var(--ink-soft)}
+  .abstract b{color:var(--ink); font-weight:600}
+
+  section{display:flex; flex-direction:column; gap:14px}
+  h2{font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:1.36rem; line-height:1.25;
+     padding-bottom:7px; border-bottom:1px solid var(--line)}
+  h2 .num{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink-faint);
+          font-weight:500; margin-right:11px; vertical-align:2px}
+  h3{font-size:1rem; font-weight:600; margin-top:4px}
+  .small{font-size:.94rem; color:var(--ink-soft)}
+  .small b{color:var(--ink); font-weight:600}
+  em{font-style:italic}
+
+  .eq{font-family:"Newsreader",Georgia,serif; font-size:1.15rem; text-align:center;
+      padding:18px 10px; background:var(--surface); border:1px solid var(--line); border-radius:7px;
+      position:relative; overflow-x:auto}
+  .eq i{font-style:italic}
+  .eq sub{font-size:.68em; vertical-align:-.28em}
+  .eq sup{font-size:.68em}
+  .eq .tag{position:absolute; right:16px; top:50%; transform:translateY(-50%);
+           font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--ink-faint)}
+  .where{font-size:.9rem; color:var(--ink-soft); max-width:68ch}
+  .where i{font-family:"Newsreader",Georgia,serif; font-style:italic; font-size:1.05em}
+
+  .tblock{display:flex; flex-direction:column; gap:8px}
+  .tnum{font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.11em;
+        text-transform:uppercase; color:var(--ink-faint)}
+  .tnum b{color:var(--ink); font-weight:600; letter-spacing:.06em}
+  .tbox{overflow-x:auto; background:var(--surface); border:1px solid var(--line); border-radius:7px}
+  table{border-collapse:collapse; width:100%; font-size:.86rem}
+  th,td{text-align:right; padding:7px 13px; white-space:nowrap}
+  thead th{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink-faint);
+           font-weight:500; border-bottom:1px solid var(--ink-faint); padding-bottom:6px}
+  th:first-child,td:first-child{text-align:left; white-space:normal; min-width:190px}
+  td{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+  td:first-child{font-family:"IBM Plex Sans",sans-serif; color:var(--ink)}
+  tr.se td{color:var(--ink-faint); padding-top:0; padding-bottom:9px; font-size:.8rem}
+  tr.rule td{border-top:1px solid var(--line); padding:0; height:0}
+  tr.stat td{font-size:.82rem}
+  tr.stat td:first-child{color:var(--ink-soft)}
+  .tnote{font-size:.79rem; color:var(--ink-faint); line-height:1.55; max-width:74ch}
+  .tnote b{color:var(--ink-soft); font-weight:600}
+  table.plain th:first-child,table.plain td:first-child{min-width:150px}
+  table.plain td,table.plain th{border-bottom:1px solid var(--line-soft)}
+  table.plain tbody tr:last-child td{border-bottom:none}
+  table.plain td.def{font-family:"IBM Plex Sans",sans-serif; text-align:left; white-space:normal;
+                     color:var(--ink-soft); font-size:.85rem}
+  .sig td{background:var(--wash)}
+  .ns{color:var(--ink-faint)}
 
   figure{margin:0; background:var(--surface); border:1px solid var(--line); border-radius:7px; overflow:hidden}
-  .cap{padding:15px 20px 0; font-size:.87rem; color:var(--ink-soft); max-width:72ch}
+  .fignum{padding:14px 20px 0; font-family:"IBM Plex Mono",monospace; font-size:.7rem;
+          letter-spacing:.11em; text-transform:uppercase; color:var(--ink-faint)}
+  .fignum b{color:var(--ink); font-weight:600; letter-spacing:.06em}
+  .cap{padding:5px 20px 0; font-size:.85rem; color:var(--ink-soft); max-width:74ch}
   .cbox{overflow-x:auto; padding:6px 10px 10px}
   svg{display:block; width:100%; height:auto; min-width:560px}
-  .legend{display:flex; gap:15px; flex-wrap:wrap; padding:0 20px 15px; font-size:.77rem; color:var(--ink-soft)}
+  .legend{display:flex; gap:15px; flex-wrap:wrap; padding:0 20px 15px; font-size:.76rem; color:var(--ink-soft)}
   .legend span{display:inline-flex; align-items:center; gap:6px}
   .sw{width:11px;height:11px;border-radius:50%;display:inline-block}
   .swl{width:20px;height:0;border-top-width:2px;border-top-style:solid;display:inline-block}
 
-  .tbox{overflow-x:auto; background:var(--surface); border:1px solid var(--line); border-radius:7px}
-  table{border-collapse:collapse; width:100%; font-size:.87rem}
-  th,td{text-align:right; padding:9px 14px; border-bottom:1px solid var(--line-soft); white-space:nowrap}
-  th{font-family:"IBM Plex Mono",monospace; font-size:.63rem; letter-spacing:.1em; text-transform:uppercase;
-     color:var(--ink-faint); font-weight:500; background:var(--wash)}
-  th:first-child,td:first-child{text-align:left; white-space:normal; min-width:200px}
-  td{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
-  td:first-child{font-family:"IBM Plex Sans",sans-serif}
-  tbody tr:last-child td{border-bottom:none}
-  .sig td{background:var(--wash)}
-  .ns{color:var(--ink-faint)}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:12px}
+  .box{background:var(--surface); border:1px solid var(--line); border-radius:7px; padding:15px 17px;
+       display:flex; flex-direction:column; gap:5px}
+  .box .n{font-family:"IBM Plex Mono",monospace; font-size:1.3rem; font-weight:600; line-height:1.1}
+  .box .l{font-size:.83rem; color:var(--ink-soft)}
 
-  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:13px}
-  .box{background:var(--surface); border:1px solid var(--line); border-radius:7px; padding:16px 18px;
-       display:flex; flex-direction:column; gap:6px}
-  .box .n{font-family:"IBM Plex Mono",monospace; font-size:1.35rem; font-weight:600; line-height:1.1}
-  .box .l{font-size:.84rem; color:var(--ink-soft)}
-  .box .l b{color:var(--ink); font-weight:600}
-
-  ul{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:8px; max-width:66ch;
-     font-size:.96rem; color:var(--ink-soft)}
-  ul b{color:var(--ink); font-weight:600}
+  ul,ol{margin:0; padding-left:21px; display:flex; flex-direction:column; gap:8px; max-width:68ch;
+     font-size:.95rem; color:var(--ink-soft)}
+  ul b,ol b{color:var(--ink); font-weight:600}
   ul.lim li::marker{color:var(--frag)}
-  code{font-family:"IBM Plex Mono",monospace; font-size:.86em; background:var(--wash); padding:1px 5px; border-radius:3px}
+  code{font-family:"IBM Plex Mono",monospace; font-size:.85em; background:var(--wash); padding:1px 5px; border-radius:3px}
+
+  .refs{display:flex; flex-direction:column; gap:10px; font-size:.88rem; color:var(--ink-soft)}
+  .refs div{padding-left:26px; text-indent:-26px; max-width:74ch; line-height:1.55}
+  .refs i{font-style:italic}
 
   .tip{position:fixed; pointer-events:none; z-index:9; opacity:0; background:var(--ink); color:var(--paper);
        font-size:.75rem; line-height:1.45; padding:8px 11px; border-radius:6px;
        font-family:"IBM Plex Mono",monospace; transition:opacity .1s; max-width:240px}
   .tip.on{opacity:1}
-  footer{border-top:1px solid var(--line); padding-top:20px; font-size:.82rem; color:var(--ink-faint);
-         display:flex; flex-direction:column; gap:8px}
+  footer{border-top:1px solid var(--line); padding-top:18px; font-size:.8rem; color:var(--ink-faint);
+         display:flex; flex-direction:column; gap:7px}
   footer a{color:var(--ink-soft)}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-  @media (max-width:560px){.wrap{padding:22px 18px 70px; gap:38px} h1{font-size:2rem}}
+  @media (max-width:560px){.wrap{padding:22px 17px 70px; gap:34px} h1{font-size:1.9rem} .eq{font-size:1rem}}
 </style>
 </head>
 <body>
@@ -110,72 +146,142 @@
 
   <div class="back"><a href="./">&larr; Aditya Garg</a></div>
 
-  <header>
-    <div class="eyebrow">Replication attempt &middot; public data &middot; September 2026</div>
+  <div class="title">
     <h1>The International Canaries</h1>
-    <p class="sub">Stanford's Digital Economy Lab finds a 19% employment shortfall for 22 to 25 year olds in AI-exposed occupations, using US payroll microdata. I tried to find the same signal across 26 countries with public data. This is what I found instead.</p>
-    <div class="byline">Aditya Garg &middot; 182 country-years, World Bank / ILO &middot; <a href="https://github.com/Lombergine/international-canaries">code and data</a></div>
-  </header>
+    <div class="authorline">Aditya Garg</div>
+    <div class="datemeta">September 2026 &middot; draft, comments welcome &middot; <a href="https://github.com/Lombergine/international-canaries">replication code</a></div>
+  </div>
 
-  <div class="verdict">
-    <span class="tag">The finding</span>
-    <p class="big">The cross-country design cannot answer this question, and the reason is arithmetic rather than data quality. <b>Detecting an effect the size of the one visible here would take about 43 comparable countries. There are not 43.</b></p>
-    <p class="small">Two things follow from that. The AI-investment measure everyone reaches for first is the wrong treatment variable and behaves like it. A language-exposure measure behaves considerably better and holds its sign under every control. Neither can be established at n=26, and no reweighting of the same 26 countries fixes it.</p>
+  <div class="abstract">
+    <h2>Abstract</h2>
+    <p>Brynjolfsson, Chandar and Chen (2026) document a 19% relative employment decline for workers aged 22 to 25 in AI-exposed occupations, identified from US payroll microdata. I ask whether the same signal is recoverable across countries using public data, assembling a panel of 26 high-income countries observed 2019 to 2025. It is not, and the reason is instructive. Cumulative private AI investment per capita, the natural treatment variable, produces a positive slope that <b>reverses sign when three southern European countries are excluded</b>. An indicator for a native-English labour market, motivated by the fact that current language models are most capable in English, performs considerably better: the coefficient is +1.41 percentage points and retains its sign across every specification, falling to +0.76 with the 2020 unemployment shock, the pre-treatment trend and investment all controlled for. It is nonetheless never distinguishable from zero, and three defensible tests of the same contrast return <em>p</em> = 0.137, 0.053 and 0.043 depending on the variance assumption.</p>
+    <p>The central result is a power calculation. The minimum detectable effect at 80% power is 1.91 to 2.65 percentage points against a point estimate of 1.41, and recovering an effect of the observed magnitude would require approximately <b>43 comparable countries</b>. Fewer exist. The cross-country design is therefore underpowered by construction rather than by sample selection, and no choice of treatment variable repairs it. Identification of this effect requires within-country variation at occupation-by-age resolution.</p>
   </div>
 
   <section>
-    <div class="hd"><div class="eyebrow">Step one</div><h2>The obvious treatment variable fails</h2></div>
-    <p class="small">The natural first attempt: regress the change in each country's youth employment penalty since 2022 on cumulative private AI investment per capita. The penalty is the youth (15-24) unemployment rate minus the all-ages rate; 2022 is the pre-ChatGPT baseline.</p>
+    <h2><span class="num">1</span>Motivation</h2>
+    <p class="small">The Canaries result is identified from ADP payroll records covering roughly 4.6 million US workers across more than 730 occupations, crossing occupation-level AI exposure with worker age at monthly frequency. The design is powerful precisely because all of that variation sits inside one country.</p>
+    <p class="small">That construction also makes the finding a US finding. Whether the entry-level effect generalises is an open and consequential question, and the obvious way to attack it is a cross-country panel. This paper asks whether that attack can work at all, using the public data actually available to someone outside a payroll provider.</p>
+    <p class="small">The answer is no, and I think the negative result is worth stating precisely, because the arithmetic that defeats the design does not depend on the particular data used here.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>Data and measurement</h2>
+    <p class="small">The outcome is the <em>youth employment penalty</em>: a country's youth (15&ndash;24) unemployment rate minus its all-ages rate, in percentage points. Differencing against the all-ages rate within the same country and year removes country fixed effects and common macroeconomic shocks, leaving the age gradient the Canaries design targets.</p>
+    <div class="tblock">
+      <div class="tnum"><b>Table 1.</b> Variable definitions and sources</div>
+      <div class="tbox"><table class="plain">
+        <thead><tr><th>Variable</th><th>Definition</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>Youth penalty</td><td class="def">Youth (15&ndash;24) unemployment rate minus all-ages rate, percentage points</td><td class="def">World Bank <code>SL.UEM.1524.ZS</code>, <code>SL.UEM.TOTL.ZS</code></td></tr>
+          <tr><td>&Delta; penalty</td><td class="def">Change in the youth penalty, 2022 to 2025. 2022 is the pre-ChatGPT baseline</td><td class="def">Constructed</td></tr>
+          <tr><td>English</td><td class="def">Indicator for a native-English labour market: USA, GBR, CAN, AUS, NZL, IRL</td><td class="def">Constructed</td></tr>
+          <tr><td>Log AI investment p.c.</td><td class="def">Log cumulative private AI investment 2013&ndash;2024 divided by 2024 population</td><td class="def">AI Index 2025; <code>SP.POP.TOTL</code></td></tr>
+          <tr><td>2020 shock</td><td class="def">Change in the youth penalty, 2019 to 2020. Captures differential COVID exposure</td><td class="def">Constructed</td></tr>
+          <tr><td>Pre-trend</td><td class="def">Change in the youth penalty, 2019 to 2022. Pre-treatment placebo window</td><td class="def">Constructed</td></tr>
+        </tbody>
+      </table></div>
+      <p class="tnote"><b>Notes.</b> Sample is 26 OECD and high-income countries with continuous 2019&ndash;2025 coverage, giving 182 country-years. Unemployment series are modelled ILO estimates rather than national-definition rates: comparable across countries at the cost of within-country sensitivity. 2025 values are ILO nowcasts, not observed. Five countries fall below the AI Index reporting threshold of approximately $1B and are coded at $0.5B.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>Investment-based exposure</h2>
+    <p class="small">The natural first specification regresses the change in the youth penalty on log cumulative AI investment per capita. Figure 1 plots it.</p>
     <figure>
-      <div class="cap">The fit is positive until you remove three countries, at which point it is flat. Greece, Spain and Italy are the largest post-pandemic unemployment declines in the sample, for reasons unrelated to AI.</div>
+      <div class="fignum"><b>Figure 1.</b> Investment-based exposure and the youth penalty</div>
+      <div class="cap">Change in the youth employment penalty, 2022 to 2025, against cumulative private AI investment per capita. The solid line is the fit on all 26 countries; the dashed line excludes Greece, Spain and Italy.</div>
       <div class="cbox"><svg id="sc" viewBox="0 0 780 440" role="img" aria-label="Scatter of change in youth employment penalty against AI investment per capita; the positive fit line flattens to zero when Greece, Spain and Italy are excluded"></svg></div>
       <div class="legend">
-        <span><i class="swl" style="border-color:var(--ink)"></i> fit, all 26 (slope +0.49)</span>
-        <span><i class="swl" style="border-color:var(--frag);border-top-style:dashed"></i> without GRC, ESP, ITA (&minus;0.02)</span>
+        <span><i class="swl" style="border-color:var(--ink)"></i> all 26, slope +0.49</span>
+        <span><i class="swl" style="border-color:var(--frag);border-top-style:dashed"></i> excluding GRC, ESP, ITA, slope &minus;0.02</span>
         <span><i class="sw" style="background:transparent;border:1.5px solid var(--ink-soft)"></i> investment below reporting threshold</span>
       </div>
     </figure>
-    <p class="small">A relationship that reverses sign on the removal of 12% of the sample is not a finding. But the more useful diagnosis is <b>why</b> it fails: investment per capita measures where AI capital is booked, not where labour is exposed to it. A US firm's capital appears in the US line whatever country's work its models displace.</p>
+    <p class="small">Excluding three of twenty-six observations moves the slope from +0.49 to &minus;0.02 percentage points per log-dollar. The three countries in question recorded the largest post-pandemic unemployment declines in the sample for reasons unconnected to AI, so the full-sample slope is recovering southern European labour market recovery.</p>
+    <p class="small">The deeper problem is conceptual. Investment per capita records <b>where AI capital is booked, not where labour is exposed to it.</b> A US firm's expenditure enters the US observation regardless of which country's work its models ultimately substitute for. The measure is misassigned by construction.</p>
   </section>
 
   <section>
-    <div class="hd"><div class="eyebrow">Step two</div><h2>A treatment variable with a mechanism behind it</h2></div>
-    <p class="small">If large language models substitute for entry-level cognitive work, they should substitute first where they are most capable, and current models are most capable in English. That predicts exposure tracks <b>the language of the labour market</b>, not the location of the capital. It is a sharper prediction, and unlike investment it is measured on the side of the market where the displacement happens.</p>
-    <p class="small">The test: an indicator for a native-English labour market (United States, United Kingdom, Canada, Australia, New Zealand, Ireland), against the same outcome, under progressively harsher controls.</p>
+    <h2><span class="num">4</span>Language-based exposure</h2>
+    <p class="small">If language models substitute for entry-level cognitive labour, they should do so first where they are most capable, and current models are most capable in English. This predicts exposure tracks the <b>language of the labour market</b> rather than the location of the capital, and it is measured on the side of the market where displacement occurs. I estimate</p>
+    <div class="eq">
+      &Delta;<i>y<sub>i</sub></i> = <i>&alpha;</i> + <i>&beta;</i>&thinsp;English<i><sub>i</sub></i> + <b style="font-weight:400"><i>x</i></b><i><sub>i</sub></i><sup>&prime;</sup><i>&gamma;</i> + <i>&epsilon;<sub>i</sub></i>
+      <span class="tag">(1)</span>
+    </div>
+    <p class="where">where <i>&Delta;y<sub>i</sub></i> is the 2022&ndash;2025 change in country <i>i</i>'s youth employment penalty, English<i><sub>i</sub></i> indicates a native-English labour market, and <i>x<sub>i</sub></i> collects the controls entered in Table 2. Estimation is by OLS on the cross-section of 26 countries.</p>
+
+    <div class="tblock">
+      <div class="tnum"><b>Table 2.</b> Native-English labour market and the change in the youth employment penalty</div>
+      <div class="tbox"><table id="rt">
+        <thead><tr><th>Dependent variable: &Delta; youth penalty, 2022&ndash;2025</th>
+          <th>(1)</th><th>(2)</th><th>(3)</th><th>(4)</th><th>(5)</th><th>(6)</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+      <p class="tnote"><b>Notes.</b> OLS estimates of equation (1). Classical standard errors in parentheses. <b>No coefficient attains significance at the 10% level in any specification</b>, so no stars are reported. Adjusted <em>R</em><sup>2</sup> is negative in columns (4) and (6): the controls cost more degrees of freedom than they recover in fit, which is the expected signature of a weak signal at this sample size. Heteroskedasticity-robust standard errors, which are smaller throughout, are discussed in Section 5 rather than substituted here.</p>
+    </div>
+
     <figure>
-      <div class="cap">Coefficient on a native-English labour market, with 95% confidence intervals, across six specifications. The point estimate stays positive and roughly stable as controls are added, which the investment measure never managed. Every interval also crosses zero.</div>
+      <div class="fignum"><b>Figure 2.</b> Specification curve</div>
+      <div class="cap">The coefficient <i>&beta;</i> on English with 95% confidence intervals, across the six columns of Table 2. The estimate stays positive and roughly stable under controls, which the investment measure never achieved. Every interval covers zero.</div>
       <div class="cbox"><svg id="sp" viewBox="0 0 780 300" role="img" aria-label="Specification curve showing the English coefficient stays between +0.76 and +1.41 across six models, with all 95% confidence intervals crossing zero"></svg></div>
     </figure>
-    <p class="small">Controlling for the size of each country's 2020 youth unemployment shock, its pre-ChatGPT trend, and AI investment per capita together moves the estimate from <b>+1.41</b> to <b>+0.76</b> percentage points. It never changes sign. The placebo, running the same split on the pre-ChatGPT window, gives a difference of &minus;0.90pp at p = 0.11, so the pattern is not simply a continuation of how these labour markets already differed.</p>
+    <p class="small">The placebo is reassuring without being decisive. Applying the same split to the pre-treatment window 2019&ndash;2022 gives a difference of &minus;0.90 percentage points (<em>p</em> = 0.11), so the post-2022 pattern is not a continuation of a pre-existing divergence. If anything the sign reverses across the treatment date, though a reversal is also what mean reversion would produce, and Table 2 column (2) shows the 2020 shock does not itself explain the outcome.</p>
   </section>
 
   <section>
-    <div class="hd"><div class="eyebrow">Step three</div><h2>Where the honest reader should stop</h2></div>
-    <p class="small">The same contrast, tested three defensible ways, does not agree with itself:</p>
-    <div class="tbox">
-      <table>
-        <thead><tr><th>Test of the same contrast</th><th>t</th><th>df</th><th>p</th><th>Reject at 5%?</th></tr></thead>
+    <h2><span class="num">5</span>Inference</h2>
+    <p class="small">The contrast in column (1) can be tested three defensible ways. They do not agree.</p>
+    <div class="tblock">
+      <div class="tnum"><b>Table 3.</b> The same contrast under three variance assumptions</div>
+      <div class="tbox"><table class="plain">
+        <thead><tr><th>Test</th><th>t</th><th>df</th><th>p</th><th>Reject at 5%</th></tr></thead>
         <tbody id="tt"></tbody>
-      </table>
+      </table></div>
+      <p class="tnote"><b>Notes.</b> All three test the same difference in means. Group standard deviations are 1.16 percentage points among the six English-speaking countries and 2.12 among the other twenty.</p>
     </div>
-    <p class="small">The disagreement comes from dispersion: the six English-speaking countries have a standard deviation of <b>1.16</b> percentage points, the other twenty have <b>2.12</b>. Whether you assume equal variances decides the answer, which means the answer is not being decided by the data. Anyone reporting only the robust standard error here would be choosing their result.</p>
-    <p class="small">There is a second problem no amount of estimation fixes. All six treated countries are Anglo liberal-market economies with weak employment protection and flexible youth hiring. English is perfectly confounded with an entire institutional family, and n=6 cannot separate them.</p>
+    <p class="small">The disagreement is driven entirely by that dispersion gap: the treated group is roughly half as variable as the control group, so whether one imposes equal variances determines the verdict. <b>When the assumption rather than the data decides the answer, the answer is not established.</b> Reporting only the robust standard error, which is the specification that clears 5%, would be selecting a result.</p>
+    <p class="small">A second identification problem is not fixable by estimation. All six treated countries are Anglo liberal-market economies with comparatively weak employment protection and flexible youth hiring. English is collinear with an entire institutional family, and six treated units cannot separate them. The coefficient in Table 2 should be read as an upper bound on a language effect, not an estimate of one.</p>
   </section>
 
   <section>
-    <div class="hd"><div class="eyebrow">Step four</div><h2>What this design could ever have detected</h2></div>
+    <h2><span class="num">6</span>Statistical power</h2>
+    <p class="small">The preceding sections describe a design that cannot reject. It is worth asking what it could ever have rejected.</p>
     <div class="grid">
-      <div class="box"><span class="n" id="pw1"></span><span class="l">Point estimate for a native-English labour market, percentage points.</span></div>
-      <div class="box"><span class="n" id="pw2"></span><span class="l">Smallest effect this design could detect at 80% power, 5% two-sided. Larger than the effect it found.</span></div>
-      <div class="box"><span class="n" id="pw3" style="color:var(--frag)"></span><span class="l">Countries needed to detect an effect the observed size at 80% power. The sample has 26.</span></div>
+      <div class="box"><span class="n" id="pw1"></span><span class="l">Point estimate on English, percentage points</span></div>
+      <div class="box"><span class="n" id="pw2"></span><span class="l">Minimum detectable effect, 80% power, 5% two-sided</span></div>
+      <div class="box"><span class="n" id="pw3" style="color:var(--frag)"></span><span class="l">Countries required to detect an effect of the observed size</span></div>
     </div>
-    <p class="small">This is the result worth carrying away. The study is not underpowered because of a bad choice of countries or a coarse outcome; it is underpowered <b>by construction</b>. There are not 43 high-income countries with comparable labour force statistics, so no cross-country panel of this shape can resolve an effect of this magnitude, whatever treatment variable it uses. That is a fact about the design, not about AI.</p>
+    <p class="small">The minimum detectable effect exceeds the point estimate under either variance assumption. Holding the treated share and the observed within-group dispersion fixed, detecting a 1.41 percentage point effect at conventional power would require roughly <b>43 countries</b>. The set of high-income economies publishing comparable labour force statistics is smaller than that.</p>
+    <p class="small">This is the paper's substantive contribution, and it is a statement about the design rather than about artificial intelligence. The study is not underpowered because of an unlucky sample, a coarse outcome, or a poorly chosen treatment variable. It is underpowered because the cross-country panel has too few units and too little within-group variation for an effect of this magnitude, and <b>no reweighting, no better exposure measure, and no additional country repairs that.</b> Any cross-country study of the entry-level AI effect faces the same arithmetic.</p>
   </section>
 
   <section>
-    <div class="hd"><div class="eyebrow">Figure 3</div><h2>Every country, sorted by how much the penalty moved</h2></div>
+    <h2><span class="num">7</span>Limitations</h2>
+    <ul class="lim">
+      <li><b>English is confounded with institutions.</b> Six treated units, all Anglo liberal-market economies. The design cannot separate language from employment protection, and I do not claim it does.</li>
+      <li><b>Three post-treatment observations,</b> one of which is a nowcast rather than an observed rate.</li>
+      <li><b>The outcome is too coarse.</b> One observation per country-year averages away the occupation-by-age variation the effect is defined on.</li>
+      <li><b>Modelled ILO estimates</b> are smoothed and are not national-definition unemployment rates.</li>
+      <li><b>The dose-response test fails.</b> Ranking the seventeen non-native European countries by EF English Proficiency Index gives <em>&rho;</em> = +0.12 (<em>p</em> = 0.65) against the post-2022 change, and a larger <em>&rho;</em> = +0.46 against the placebo window. A mechanism linear in proficiency should have appeared here and did not, which is evidence against the language interpretation. Sources disagree on EF levels, so only ranks were used.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">8</span>What would settle it</h2>
+    <p class="small">The power calculation implies that adding countries is not the fix. Adding resolution within countries is:</p>
+    <ol>
+      <li><b>Occupation-by-age employment counts</b> from EU-LFS or national labour force surveys at quarterly frequency, crossed with an ISCO-mapped AI exposure measure. This relocates the identifying variation inside countries, where there is enough of it, and reproduces the Canaries design outside the United States. It is tractable with public EU-LFS microdata access and is the extension I would build next.</li>
+      <li><b>Exposure defined on tasks rather than nationality.</b> The share of a country's employment in occupations whose output is English-language, which would separate language from the Anglo institutional bundle that defeats Section 5.</li>
+      <li><b>Payroll microdata outside the United States.</b> The reason the original design works is ADP. No public equivalent exists, and that remains the binding constraint.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">A</span>Appendix</h2>
     <figure>
-      <div class="cap">Change in the youth employment penalty, 2022 to 2025, percentage points. English-speaking labour markets sit high but not exclusively so: Finland and Hungary are above most of them, and Ireland and Australia are mid-pack.</div>
+      <div class="fignum"><b>Figure A1.</b> Country-level changes in the youth employment penalty</div>
+      <div class="cap">Change 2022 to 2025, percentage points, all 26 countries. English-speaking labour markets cluster toward the top without dominating it: Finland and Hungary exceed most of them, and Ireland and Australia sit mid-distribution.</div>
       <div class="cbox"><svg id="br" viewBox="0 0 780 560" role="img" aria-label="Bar chart of the change in youth employment penalty for 26 countries, with English-speaking countries clustered toward the top but interleaved with others"></svg></div>
       <div class="legend">
         <span><i class="sw" style="background:var(--hi)"></i> native-English labour market</span>
@@ -186,47 +292,25 @@
   </section>
 
   <section>
-    <div class="hd"><div class="eyebrow">Method</div><h2>What was computed</h2></div>
-    <ul>
-      <li><b>Outcome.</b> Youth employment penalty = youth (15-24) unemployment rate minus the all-ages rate, per country per year, differenced 2022 to 2025. World Bank <code>SL.UEM.1524.ZS</code> and <code>SL.UEM.TOTL.ZS</code>, modelled ILO estimates. 2025 values are nowcasts, not observed.</li>
-      <li><b>Treatments.</b> (i) Cumulative private AI investment 2013-2024 from the Stanford AI Index over 2024 population, in logs. (ii) A native-English labour market indicator.</li>
-      <li><b>Specifications.</b> OLS with classical and HC1 robust standard errors, controlling in turn for the 2020 youth unemployment shock, the 2019-2022 pre-trend, and log investment per capita. Welch and pooled two-sample t-tests on the same contrast. A placebo on the pre-ChatGPT window.</li>
-      <li><b>Power.</b> Minimum detectable effect at 80% power and 5% two-sided, from the realised standard error; required sample from the pooled within-group variance holding the treated share fixed.</li>
-      <li><b>Sample.</b> 26 OECD and high-income countries with continuous 2019-2025 coverage. Five fall below the AI Index reporting threshold of roughly $1B and are coded at $0.5B, ringed in Figure 1.</li>
-    </ul>
-  </section>
-
-  <section>
-    <div class="hd"><div class="eyebrow">Limitations</div><h2>What would make this wrong</h2></div>
-    <ul class="lim">
-      <li><b>English is confounded with institutions.</b> All six treated countries are Anglo liberal-market economies. This design cannot tell language apart from employment protection, and I do not claim it can.</li>
-      <li><b>Three post-period observations,</b> one of which is a nowcast rather than an observed rate.</li>
-      <li><b>The outcome is far too coarse.</b> Canaries identifies off occupation-level exposure crossed with age inside one country, monthly. One number per country per year averages away the variation the effect lives in.</li>
-      <li><b>Modelled ILO estimates</b> are smoothed and are not national-definition unemployment rates. They are comparable across countries at the cost of being less sensitive within them.</li>
-      <li><b>A within-non-native dose-response test failed.</b> Ranking the seventeen non-native European countries by EF English Proficiency Index gives &rho; = +0.12 (p = 0.65) against the post-2022 change, and a <em>larger</em> &rho; = +0.46 against the placebo window. If the mechanism were linear in proficiency it should have shown up here, and it does not. Sources also disagree on EF levels, so only ranks were used.</li>
-    </ul>
-  </section>
-
-  <section>
-    <div class="hd"><div class="eyebrow">Next</div><h2>What would settle it</h2></div>
-    <p class="small">Given the power calculation, more countries is not the answer. More resolution per country is:</p>
-    <ul>
-      <li><b>Occupation-by-age employment counts</b> from EU-LFS or national labour force surveys, quarterly, crossed with an ISCO-mapped AI exposure measure. This moves the identifying variation inside countries, where there is enough of it, and reproduces the Canaries design outside the US.</li>
-      <li><b>Language exposure measured on tasks, not nationality.</b> The share of a country's employment in occupations whose output is English-language, which separates language from the Anglo institutional bundle that defeats the test above.</li>
-      <li><b>Payroll microdata outside the US.</b> The reason Canaries works is ADP. There is no public equivalent, and that is the real bottleneck.</li>
-    </ul>
-    <p class="small">The first is tractable with public EU-LFS microdata access and is what I would build next.</p>
+    <h2><span class="num"></span>References</h2>
+    <div class="refs">
+      <div>Brynjolfsson, E., B. Chandar, and R. Chen (2026). "Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of Artificial Intelligence." <i>Stanford Digital Economy Lab working paper</i>, revised 12 August 2026. <a href="https://digitaleconomy.stanford.edu/publications/canaries-in-the-coal-mine/">Link</a></div>
+      <div>EF Education First (2025). <i>EF English Proficiency Index, 2025 edition.</i> Ranks only; editions disagree on levels.</div>
+      <div>International Labour Organization (2025). <i>ILO modelled estimates,</i> November 2025 update. Distributed via the World Bank World Development Indicators.</div>
+      <div>Stanford Institute for Human-Centered Artificial Intelligence (2025). <i>Artificial Intelligence Index Report 2025,</i> Chapter 4: Economy. <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report/economy">Link</a></div>
+      <div>World Bank (2026). <i>World Development Indicators.</i> Series <code>SL.UEM.1524.ZS</code>, <code>SL.UEM.TOTL.ZS</code>, <code>SP.POP.TOTL</code>.</div>
+    </div>
   </section>
 
   <footer>
-    <div>Data: World Bank <a href="https://data.worldbank.org/indicator/SL.UEM.1524.ZS">SL.UEM.1524.ZS</a>, <a href="https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS">SL.UEM.TOTL.ZS</a>, <a href="https://data.worldbank.org/indicator/SP.POP.TOTL">SP.POP.TOTL</a> &middot; AI investment from the <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report/economy">Stanford AI Index</a> &middot; English proficiency from the EF EPI 2025 edition, ranks only &middot; Reference study: <a href="https://digitaleconomy.stanford.edu/news/canariesaug26/">Canaries in the Coal Mine</a>, Brynjolfsson, Chandar and Chen</div>
-    <div>All figures reproducible from <a href="https://github.com/Lombergine/international-canaries">the repository</a> with the standard library plus NumPy and SciPy.</div>
+    <div>All estimates in this paper reproduce from <a href="https://github.com/Lombergine/international-canaries">github.com/Lombergine/international-canaries</a> with the Python standard library plus NumPy and SciPy. Figures are drawn from the same JSON the estimation writes.</div>
+    <div>Errors are mine. Corrections are welcome at <a href="mailto:gargaditya061@gmail.com">gargaditya061@gmail.com</a>.</div>
   </footer>
 
 </div>
 <div class="tip" id="tip"></div>
 
-<script id="D" type="application/json">{"r":[["AUS","Australia",147.1,4.74,5.52,0.78,1,0],["AUT","Austria",217.9,5.33,5.42,0.08,0,0],["BEL","Belgium",84.3,10.84,11.87,1.03,0,0],["CAN","Canada",363.5,4.8,6.89,2.09,1,0],["CHE","Switzerland",444.2,2.71,4.17,1.46,0,0],["CZE","Czechia",45.9,4.5,6.39,1.9,0,1],["DEU","Germany",155.7,2.91,3.15,0.24,0,0],["DNK","Denmark",167.3,6.1,6.21,0.11,0,0],["ESP","Spain",61.4,16.68,14.37,-2.31,0,0],["FIN","Finland",177.9,7.42,12.02,4.6,0,0],["FRA","France",160.5,10.55,11.35,0.79,0,0],["GBR","United Kingdom",404.2,6.82,9.9,3.08,1,0],["GRC","Greece",48.1,18.86,12.85,-6.01,0,1],["HUN","Hungary",52.3,6.96,9.68,2.73,0,1],["IRL","Ireland",370.7,4.92,5.86,0.94,1,0],["ISR","Israel",1499.7,3.02,2.54,-0.48,0,0],["ITA","Italy",17.0,15.63,14.15,-1.48,0,0],["JPN","Japan",48.4,1.82,1.45,-0.37,0,0],["KOR","South Korea",173.9,3.78,4.01,0.23,0,0],["NLD","Netherlands",166.7,4.12,4.96,0.84,0,0],["NOR","Norway",179.5,6.68,8.79,2.11,0,0],["NZL","New Zealand",94.5,6.06,9.28,3.22,1,1],["POL","Poland",13.7,7.75,7.72,-0.03,0,1],["PRT","Portugal",93.5,13.04,14.06,1.01,0,0],["SWE","Sweden",662.3,14.18,15.62,1.44,0,0],["USA","United States",1385.3,4.46,5.14,0.69,1,0]],"s":[["English only",1.405,-0.477,3.287,0.1365,0.0435,0.09],["+ 2020 youth shock",1.246,-0.762,3.254,0.2119,0.1368,0.101],["+ pre-ChatGPT trend",1.301,-0.687,3.289,0.1891,0.1109,0.097],["+ both",1.152,-0.961,3.264,0.2704,0.2598,0.108],["+ log AI investment p.c.",1.058,-0.978,3.094,0.2935,0.145,0.124],["+ everything",0.762,-1.521,3.045,0.4952,0.4927,0.145]],"t":{"classical":{"t":1.54,"p":0.1365,"df":24},"welch":{"t":2.09,"p":0.0527,"df":15.8},"robust_hc1":{"t":2.13,"p":0.0435,"df":24}},"pl":{"diff":-0.896,"t":-1.71,"p":0.1097},"pw":{"mde":2.65,"mde_r":1.91,"beta":1.405,"n_needed":43,"n_have":26,"ratio":1.9},"ff":[-1.7374,0.4917],"fd":[1.3575,-0.0231]}</script>
+<script id="D" type="application/json">{"r":[["AUS","Australia",147.1,4.74,5.52,0.78,1,0],["AUT","Austria",217.9,5.33,5.42,0.08,0,0],["BEL","Belgium",84.3,10.84,11.87,1.03,0,0],["CAN","Canada",363.5,4.8,6.89,2.09,1,0],["CHE","Switzerland",444.2,2.71,4.17,1.46,0,0],["CZE","Czechia",45.9,4.5,6.39,1.9,0,1],["DEU","Germany",155.7,2.91,3.15,0.24,0,0],["DNK","Denmark",167.3,6.1,6.21,0.11,0,0],["ESP","Spain",61.4,16.68,14.37,-2.31,0,0],["FIN","Finland",177.9,7.42,12.02,4.6,0,0],["FRA","France",160.5,10.55,11.35,0.79,0,0],["GBR","United Kingdom",404.2,6.82,9.9,3.08,1,0],["GRC","Greece",48.1,18.86,12.85,-6.01,0,1],["HUN","Hungary",52.3,6.96,9.68,2.73,0,1],["IRL","Ireland",370.7,4.92,5.86,0.94,1,0],["ISR","Israel",1499.7,3.02,2.54,-0.48,0,0],["ITA","Italy",17.0,15.63,14.15,-1.48,0,0],["JPN","Japan",48.4,1.82,1.45,-0.37,0,0],["KOR","South Korea",173.9,3.78,4.01,0.23,0,0],["NLD","Netherlands",166.7,4.12,4.96,0.84,0,0],["NOR","Norway",179.5,6.68,8.79,2.11,0,0],["NZL","New Zealand",94.5,6.06,9.28,3.22,1,1],["POL","Poland",13.7,7.75,7.72,-0.03,0,1],["PRT","Portugal",93.5,13.04,14.06,1.01,0,0],["SWE","Sweden",662.3,14.18,15.62,1.44,0,0],["USA","United States",1385.3,4.46,5.14,0.69,1,0]],"s":[["English only",1.405,-0.477,3.287,0.1365,0.0435,0.09],["+ 2020 youth shock",1.246,-0.762,3.254,0.2119,0.1368,0.101],["+ pre-ChatGPT trend",1.301,-0.687,3.289,0.1891,0.1109,0.097],["+ both",1.152,-0.961,3.264,0.2704,0.2598,0.108],["+ log AI investment p.c.",1.058,-0.978,3.094,0.2935,0.145,0.124],["+ everything",0.762,-1.521,3.045,0.4952,0.4927,0.145]],"t":{"classical":{"t":1.54,"p":0.1365,"df":24},"welch":{"t":2.09,"p":0.0527,"df":15.8},"robust_hc1":{"t":2.13,"p":0.0435,"df":24}},"pl":{"diff":-0.896,"t":-1.71,"p":0.1097},"pw":{"mde":2.65,"mde_r":1.91,"beta":1.405,"n_needed":43,"n_have":26,"ratio":1.9},"ff":[-1.7374,0.4917],"fd":[1.3575,-0.0231],"rt":{"rows":[{"l":"Native-English labour market","c":[[1.405,0.912,0.659,""],[1.246,0.971,0.808,""],[1.301,0.961,0.785,""],[1.152,1.019,0.996,""],[1.058,0.984,0.701,""],[0.762,1.098,1.092,""]]},{"l":"2020 youth unemployment shock","c":[null,[0.171,0.315,0.387,""],null,[0.166,0.322,0.387,""],null,[0.152,0.323,0.374,""]]},{"l":"Pre-ChatGPT change (2019\u201322)","c":[null,null,[-0.116,0.279,0.36,""],[-0.11,0.284,0.35,""],null,[-0.15,0.288,0.339,""]]},{"l":"Log AI investment per capita","c":[null,null,null,null,[0.346,0.365,0.331,""],[0.367,0.381,0.364,""]]},{"l":"Constant","c":[[0.394,0.438,0.481,""],[0.164,0.615,0.71,""],[0.382,0.447,0.484,""],[0.159,0.627,0.725,""],[-1.254,1.792,1.821,""],[-1.573,1.907,2.178,""]]}],"n":[26,26,26,26,26,26],"r2":[0.09,0.101,0.097,0.108,0.124,0.145],"adj":[0.052,0.023,0.018,-0.014,0.048,-0.018]}}</script>
 <script>
 (function(){
   var D=JSON.parse(document.getElementById('D').textContent);
@@ -234,14 +318,38 @@
   function C(n){return cs.getPropertyValue(n).trim()}
   function E(n,a){var e=document.createElementNS('http://www.w3.org/2000/svg',n);for(var k in a)e.setAttribute(k,a[k]);return e}
   function f2(v){return (v>=0?'+':'−')+Math.abs(v).toFixed(2)}
+  function f3(v){return (v<0?'−':'')+Math.abs(v).toFixed(3)}
   var P=D.r.map(function(a){return {iso:a[0],name:a[1],pc:a[2],g22:a[3],g25:a[4],d:a[5],en:!!a[6],est:!!a[7]}});
 
-  document.getElementById('pw1').textContent=f2(D.pw.beta)+' pp';
-  document.getElementById('pw2').textContent=D.pw.mde_r.toFixed(2)+' – '+D.pw.mde.toFixed(2)+' pp';
+  document.getElementById('pw1').textContent=f2(D.pw.beta);
+  document.getElementById('pw2').textContent=D.pw.mde_r.toFixed(2)+' – '+D.pw.mde.toFixed(2);
   document.getElementById('pw3').textContent='~'+D.pw.n_needed;
 
+  var tb=document.querySelector('#rt tbody');
+  D.rt.rows.forEach(function(r){
+    var tr=document.createElement('tr'), td=document.createElement('td');
+    td.textContent=r.l; tr.appendChild(td);
+    r.c.forEach(function(c){var d=document.createElement('td');
+      d.textContent=c?f3(c[0])+c[3]:''; tr.appendChild(d);});
+    tb.appendChild(tr);
+    var tr2=document.createElement('tr'); tr2.className='se';
+    tr2.appendChild(document.createElement('td'));
+    r.c.forEach(function(c){var d=document.createElement('td');
+      d.textContent=c?'('+c[1].toFixed(3)+')':''; tr2.appendChild(d);});
+    tb.appendChild(tr2);
+  });
+  var rule=document.createElement('tr'); rule.className='rule';
+  var rc=document.createElement('td'); rc.colSpan=7; rule.appendChild(rc); tb.appendChild(rule);
+  [['Observations',D.rt.n,0],['R-squared',D.rt.r2,3],['Adjusted R-squared',D.rt.adj,3]].forEach(function(s){
+    var tr=document.createElement('tr'); tr.className='stat';
+    var td=document.createElement('td'); td.textContent=s[0]; tr.appendChild(td);
+    s[1].forEach(function(v){var d=document.createElement('td');
+      d.textContent=s[2]?f3(v):String(v); tr.appendChild(d);});
+    tb.appendChild(tr);
+  });
+
   var order=['classical','welch','robust_hc1'],
-      nm={classical:'Pooled two-sample t-test',welch:'Welch t-test (unequal variances)',robust_hc1:'OLS with HC1 robust errors'},
+      nm={classical:'Pooled two-sample t-test',welch:'Welch t-test, unequal variances',robust_hc1:'OLS, HC1 robust errors'},
       tt=document.getElementById('tt');
   order.forEach(function(k){
     var t=D.t[k],tr=document.createElement('tr'); if(t.p<0.05) tr.className='sig';
@@ -277,9 +385,9 @@
       var t=E('text',{x:X(v),y:H-B+20,'text-anchor':'middle',fill:C('--ink-faint'),'font-size':'11','font-family':'IBM Plex Mono, monospace'});
       t.textContent='$'+v; s.appendChild(t);});
     var ax=E('text',{x:L+iw/2,y:H-10,'text-anchor':'middle',fill:C('--ink-soft'),'font-size':'12'});
-    ax.textContent='cumulative private AI investment per capita (log scale)'; s.appendChild(ax);
+    ax.textContent='cumulative private AI investment per capita, log scale'; s.appendChild(ax);
     var ay=E('text',{x:15,y:T+ih/2,'text-anchor':'middle',fill:C('--ink-soft'),'font-size':'12',transform:'rotate(-90 15 '+(T+ih/2)+')'});
-    ay.textContent='change in youth penalty, 2022–2025 (pp)'; s.appendChild(ay);
+    ay.textContent='Δ youth penalty, 2022–2025 (pp)'; s.appendChild(ay);
     function fit(f,col,dash){var a=f[0],b=f[1],pa=13,pb=1600;
       s.appendChild(E('line',{x1:X(pa),y1:Y(a+b*Math.log(pa)),x2:X(pb),y2:Y(a+b*Math.log(pb)),
         stroke:col,'stroke-width':2,'stroke-dasharray':dash||'none','stroke-linecap':'round'}));}
@@ -312,16 +420,16 @@
       s.appendChild(E('line',{x1:X(cl),x2:X(ch),y1:y,y2:y,stroke:C('--accent'),'stroke-width':2,'stroke-opacity':.45,'stroke-linecap':'round'}));
       [cl,ch].forEach(function(v){s.appendChild(E('line',{x1:X(v),x2:X(v),y1:y-4,y2:y+4,stroke:C('--accent'),'stroke-width':2,'stroke-opacity':.45}));});
       var dot=E('circle',{cx:X(b),cy:y,r:5.5,fill:C('--accent')});
-      bind(dot,null,'<b>'+label+'<\/b><br>β = '+f2(b)+' pp<br>95% CI ['+f2(cl)+', '+f2(ch)+']<br>p = '+p.toFixed(3));
+      bind(dot,null,'<b>('+(i+1)+') '+label+'<\/b><br>β = '+f2(b)+' pp<br>95% CI ['+f2(cl)+', '+f2(ch)+']<br>p = '+p.toFixed(3));
       dot.setAttribute('aria-label',label+', coefficient '+b+' percentage points');
       s.appendChild(dot);
       var nm=E('text',{x:L-14,y:y+4,'text-anchor':'end',fill:C('--ink'),'font-size':'11.5'});
-      nm.textContent=label; s.appendChild(nm);
+      nm.textContent='('+(i+1)+')  '+label; s.appendChild(nm);
       var vl=E('text',{x:X(ch)+9,y:y+4,fill:C('--ink-faint'),'font-size':'10','font-family':'IBM Plex Mono, monospace'});
       vl.textContent=f2(b); s.appendChild(vl);
     });
     var n=E('text',{x:L,y:H-10,fill:C('--ink-faint'),'font-size':'10.5'});
-    n.textContent='bars are 95% confidence intervals; every one crosses zero'; s.appendChild(n);
+    n.textContent='95% confidence intervals from classical standard errors; every interval covers zero'; s.appendChild(n);
   })();
 
   (function(){
