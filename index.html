@@ -68,7 +68,6 @@
   .pull{background:var(--wash); border-left:2px solid var(--accent); padding:13px 17px; border-radius:0 5px 5px 0;
         font-size:.92rem; color:var(--ink-soft); max-width:60ch}
   .pull b{color:var(--ink); font-weight:600}
-  .pull code{font-family:"IBM Plex Mono",monospace; font-size:.88em}
 
   .stack{display:flex; flex-wrap:wrap; gap:7px}
   .stack span{font-family:"IBM Plex Mono",monospace; font-size:.76rem; color:var(--ink-soft);
@@ -117,9 +116,9 @@
         <p class="role">Independent replication attempt</p>
         <p>Stanford's Digital Economy Lab found a 19% employment shortfall for 22 to 25 year olds in AI-exposed occupations, using US payroll microdata. I tried to find the same signal across 26 countries using only public World Bank and ILO data.</p>
         <div class="pull">
-          <b>It does not replicate, and the reason is the interesting part.</b> The correlation is +0.28 (p = 0.16) and the sign flips to &minus;0.02 when Greece, Spain and Italy are dropped. The apparent signal is post-COVID recovery, not AI. The placebo on the pre-ChatGPT window is clean at +0.03, so there is no pre-trend, just no power at this resolution.
+          <b>The cross-country design cannot answer the question, and the reason is arithmetic.</b> Detecting an effect the size of the one visible in the data would require about 43 comparable countries. There are not 43. The study is underpowered by construction, not by a bad choice of sample.
         </div>
-        <p>Annual country-level estimates average away exactly the variation the effect lives in. The version worth building is EU-LFS occupation-by-age counts crossed with ISCO-mapped exposure scores.</p>
+        <p>Along the way: AI investment per capita, the treatment variable everyone reaches for first, reverses sign when three countries are dropped. A language-exposure measure holds its sign under every control and beats it on every cut, but cannot be separated from the Anglo institutional bundle at n=6. Reported with the specification curve, the power calculation, and the placebo that constrains both.</p>
         <div class="links">
           <a href="./canaries.html">Write-up and charts</a>
           <a href="https://github.com/Lombergine/international-canaries">Code and data</a>
@@ -159,9 +158,9 @@
   <section>
     <h2>Tools</h2>
     <div class="stack">
-      <span>Python</span><span>pandas</span><span>Swift / SwiftData</span><span>React Native</span>
-      <span>JavaScript</span><span>Java</span><span>HTML / CSS</span><span>Claude API</span>
-      <span>Vercel</span><span>Supabase</span>
+      <span>Python</span><span>pandas</span><span>NumPy / SciPy</span><span>Swift / SwiftData</span>
+      <span>React Native</span><span>JavaScript</span><span>Java</span><span>HTML / CSS</span>
+      <span>Claude API</span><span>Vercel</span><span>Supabase</span>
     </div>
   </section>
 
