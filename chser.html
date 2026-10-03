@@ -35,7 +35,7 @@ code{font-size:14px} a{color:var(--c2)}
 .ex span{color:var(--mut)}
 </style></head><body><main>
 <h1>Zero-Shot LLM Correction of Children's Speech Recognition: A Follow-Up on CHSER</h1>
-<div class="meta">Aditya Garg · October 2026 · <a href="https://github.com/Lombergine/chser-zero-shot">code and outputs</a></div>
+<div class="meta">Aditya Garg · October 2026 · <a href="https://github.com/Lombergine/lombergine.github.io/tree/main/chser-zero-shot">code and outputs</a></div>
 
 <div class="abstract"><b>Abstract.</b> CHSER (Balaji Shankar et al., Interspeech 2025) reports that zero-shot prompting of GPT-4o mini raised word error rate on child speech from 30.5% to 42.1%, which suggests that generative error correction needs fine-tuning or examples. I test whether that holds for a larger model. Using the paper's prompt templates and scoring code, I ran Claude Opus 5.5 zero-shot on a stratified sample of 600 test utterances. With the N-best prompt, the source-weighted WER fell from 31.4% to 23.0% (change -8.4 points, 95% CI -10.3 to -6.7), a 27% relative reduction, close to the paper's fine-tuned Flan-T5 result of 21.8%. Without the other hypotheses the gain was small (-2.5 points). Insertions were the error type least reduced, which agrees with the paper's error analysis. Most remaining insertions sit at utterance boundaries, concentrated in the OGI spontaneous subset, where the reference and the recognized audio appear to cover different spans. A text-only corrector cannot remove those. The outputs were produced in batches of fifty utterances per model context, so the result should be confirmed with independent API calls before it is treated as settled.</div>
 

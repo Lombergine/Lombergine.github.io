@@ -1,0 +1,356 @@
+{
+ "paper": {
+  "baseline": {
+   "MyST": {
+    "S": 320,
+    "D": 364,
+    "I": 87,
+    "N": 2711,
+    "WER": 28.44
+   },
+   "CMU_Kids": {
+    "S": 74,
+    "D": 25,
+    "I": 65,
+    "N": 822,
+    "WER": 19.95
+   },
+   "OGI_Spont": {
+    "S": 628,
+    "D": 689,
+    "I": 308,
+    "N": 3953,
+    "WER": 41.11
+   },
+   "OGI_Scripted": {
+    "S": 102,
+    "D": 50,
+    "I": 41,
+    "N": 675,
+    "WER": 28.59
+   },
+   "OCSC": {
+    "S": 188,
+    "D": 76,
+    "I": 105,
+    "N": 818,
+    "WER": 45.11
+   },
+   "sample_pooled": {
+    "S": 1312,
+    "D": 1204,
+    "I": 606,
+    "N": 8979,
+    "WER": 34.77
+   },
+   "weighted_full_test": 31.43
+  },
+  "onebest": {
+   "MyST": {
+    "S": 261,
+    "D": 370,
+    "I": 85,
+    "N": 2711,
+    "WER": 26.41
+   },
+   "CMU_Kids": {
+    "S": 49,
+    "D": 25,
+    "I": 46,
+    "N": 822,
+    "WER": 14.6
+   },
+   "OGI_Spont": {
+    "S": 516,
+    "D": 585,
+    "I": 330,
+    "N": 3953,
+    "WER": 36.2
+   },
+   "OGI_Scripted": {
+    "S": 79,
+    "D": 39,
+    "I": 38,
+    "N": 675,
+    "WER": 23.11
+   },
+   "OCSC": {
+    "S": 174,
+    "D": 83,
+    "I": 103,
+    "N": 818,
+    "WER": 44.01
+   },
+   "sample_pooled": {
+    "S": 1079,
+    "D": 1102,
+    "I": 602,
+    "N": 8979,
+    "WER": 30.99
+   },
+   "weighted_full_test": 28.87
+  },
+  "nbest": {
+   "MyST": {
+    "S": 195,
+    "D": 308,
+    "I": 60,
+    "N": 2711,
+    "WER": 20.77
+   },
+   "CMU_Kids": {
+    "S": 39,
+    "D": 20,
+    "I": 46,
+    "N": 822,
+    "WER": 12.77
+   },
+   "OGI_Spont": {
+    "S": 347,
+    "D": 491,
+    "I": 258,
+    "N": 3953,
+    "WER": 27.73
+   },
+   "OGI_Scripted": {
+    "S": 70,
+    "D": 22,
+    "I": 27,
+    "N": 675,
+    "WER": 17.63
+   },
+   "OCSC": {
+    "S": 145,
+    "D": 57,
+    "I": 104,
+    "N": 818,
+    "WER": 37.41
+   },
+   "sample_pooled": {
+    "S": 796,
+    "D": 898,
+    "I": 495,
+    "N": 8979,
+    "WER": 24.38
+   },
+   "weighted_full_test": 23.03
+  }
+ },
+ "fair": {
+  "baseline": {
+   "MyST": {
+    "S": 322,
+    "D": 363,
+    "I": 87,
+    "N": 2715,
+    "WER": 28.43
+   },
+   "CMU_Kids": {
+    "S": 74,
+    "D": 25,
+    "I": 65,
+    "N": 822,
+    "WER": 19.95
+   },
+   "OGI_Spont": {
+    "S": 627,
+    "D": 690,
+    "I": 307,
+    "N": 3957,
+    "WER": 41.04
+   },
+   "OGI_Scripted": {
+    "S": 102,
+    "D": 51,
+    "I": 40,
+    "N": 685,
+    "WER": 28.18
+   },
+   "OCSC": {
+    "S": 186,
+    "D": 78,
+    "I": 104,
+    "N": 822,
+    "WER": 44.77
+   },
+   "sample_pooled": {
+    "S": 1311,
+    "D": 1207,
+    "I": 603,
+    "N": 9001,
+    "WER": 34.67
+   },
+   "weighted_full_test": 31.32
+  },
+  "onebest": {
+   "MyST": {
+    "S": 262,
+    "D": 370,
+    "I": 86,
+    "N": 2715,
+    "WER": 26.45
+   },
+   "CMU_Kids": {
+    "S": 49,
+    "D": 25,
+    "I": 46,
+    "N": 822,
+    "WER": 14.6
+   },
+   "OGI_Spont": {
+    "S": 515,
+    "D": 586,
+    "I": 329,
+    "N": 3957,
+    "WER": 36.14
+   },
+   "OGI_Scripted": {
+    "S": 79,
+    "D": 40,
+    "I": 37,
+    "N": 685,
+    "WER": 22.77
+   },
+   "OCSC": {
+    "S": 172,
+    "D": 85,
+    "I": 102,
+    "N": 822,
+    "WER": 43.67
+   },
+   "sample_pooled": {
+    "S": 1077,
+    "D": 1106,
+    "I": 600,
+    "N": 9001,
+    "WER": 30.92
+   },
+   "weighted_full_test": 28.81
+  },
+  "nbest": {
+   "MyST": {
+    "S": 193,
+    "D": 310,
+    "I": 59,
+    "N": 2715,
+    "WER": 20.7
+   },
+   "CMU_Kids": {
+    "S": 39,
+    "D": 20,
+    "I": 46,
+    "N": 822,
+    "WER": 12.77
+   },
+   "OGI_Spont": {
+    "S": 346,
+    "D": 492,
+    "I": 257,
+    "N": 3957,
+    "WER": 27.67
+   },
+   "OGI_Scripted": {
+    "S": 69,
+    "D": 23,
+    "I": 26,
+    "N": 685,
+    "WER": 17.23
+   },
+   "OCSC": {
+    "S": 142,
+    "D": 60,
+    "I": 104,
+    "N": 822,
+    "WER": 37.23
+   },
+   "sample_pooled": {
+    "S": 789,
+    "D": 905,
+    "I": 492,
+    "N": 9001,
+    "WER": 24.29
+   },
+   "weighted_full_test": 22.9
+  }
+ },
+ "bootstrap_change_vs_baseline": {
+  "paper": {
+   "onebest": {
+    "change_pp": -2.55,
+    "ci95": [
+     -3.46,
+     -1.65
+    ]
+   },
+   "nbest": {
+    "change_pp": -8.4,
+    "ci95": [
+     -10.32,
+     -6.65
+    ]
+   }
+  },
+  "fair": {
+   "onebest": {
+    "change_pp": -2.51,
+    "ci95": [
+     -3.44,
+     -1.55
+    ]
+   },
+   "nbest": {
+    "change_pp": -8.42,
+    "ci95": [
+     -10.47,
+     -6.73
+    ]
+   }
+  }
+ },
+ "outside_nbest_words": {
+  "onebest": {
+   "words": 8495,
+   "outside_nbest": 322,
+   "pct": 3.79,
+   "of_which_in_reference": 78
+  },
+  "nbest": {
+   "words": 8588,
+   "outside_nbest": 78,
+   "pct": 0.91,
+   "of_which_in_reference": 58
+  }
+ },
+ "utterance_changes": {
+  "onebest": {
+   "changed": 279,
+   "better": 149,
+   "worse": 58,
+   "n": 600
+  },
+  "nbest": {
+   "changed": 350,
+   "better": 262,
+   "worse": 45,
+   "n": 600
+  }
+ },
+ "paper_baseline": {
+  "All": 30.5,
+  "MyST": 28.1,
+  "CMU_Kids": 18.7,
+  "OGI_Spont": 40.6,
+  "OGI_Scripted": 26.2,
+  "OCSC": 43.1
+ },
+ "paper_gpt4o_mini": {
+  "zero_shot": 42.1,
+  "one_shot": 27.3,
+  "five_shot": 27.4
+ },
+ "paper_finetuned": {
+  "flan_t5": 21.8,
+  "llama": 24.8,
+  "nbest_oracle": 17.7
+ }
+}
