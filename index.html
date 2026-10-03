@@ -110,6 +110,23 @@
 
       <article class="item">
         <div class="item-head">
+          <h3>Zero-shot correction of children's speech recognition</h3>
+          <span class="when">2026</span>
+        </div>
+        <p class="role">Follow-up on CHSER (UCLA SPAPL, Interspeech 2025)</p>
+        <p>CHSER reported that zero-shot prompting of GPT-4o mini made Whisper's transcripts of children's speech worse, raising word error rate from 30.5% to 42.1%. I reran the paper's own prompt and scoring code with a larger model on a stratified sample of 600 test utterances.</p>
+        <div class="pull">
+          <b>With the N-best prompt and no examples, weighted WER fell from 31.4% to 23.0%,</b> close to the paper's fine-tuned result of 21.8%. Almost all of the gain depends on seeing the alternative hypotheses.
+        </div>
+        <p>The errors that remain are the more interesting part. Insertions fell least, as the paper found, and most of the leftover ones sit at the start or end of spontaneous monologues, where the recognized audio seems to cover speech the reference transcript does not. A model that sees only text cannot remove those. Reported with per-corpus tables, bootstrap intervals, a memorization check and the limits of how the outputs were generated.</p>
+        <div class="links">
+          <a href="./chser.html">Write-up and charts</a>
+          <a href="https://github.com/Lombergine/chser-zero-shot">Code and outputs</a>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-head">
           <h3>The International Canaries</h3>
           <span class="when">2026</span>
         </div>

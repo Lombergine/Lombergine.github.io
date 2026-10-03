@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zero-Shot Child ASR Correction</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--mut:#66635c;--rule:#dcd8cf;--card:#ffffff;
+--c0:#9a9488;--c1:#d08a3c;--c2:#2f6f8f;--s:#2f6f8f;--d:#7fa9bf;--i:#c4543d;--grid:#e7e3da}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16171a;--fg:#e9e7e2;--mut:#a29f97;--rule:#33353a;--card:#1d1f23;
+--c0:#7c776d;--c1:#e0a05a;--c2:#5aa3c6;--s:#5aa3c6;--d:#9cc3d6;--i:#e07a62;--grid:#2a2c31}}
+:root[data-theme="dark"]{--bg:#16171a;--fg:#e9e7e2;--mut:#a29f97;--rule:#33353a;--card:#1d1f23;
+--c0:#7c776d;--c1:#e0a05a;--c2:#5aa3c6;--s:#5aa3c6;--d:#9cc3d6;--i:#e07a62;--grid:#2a2c31}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.62 'Source Serif 4',Georgia,serif}
+main{max-width:760px;margin:0 auto;padding:48px 16px 80px}
+h1{font-size:30px;line-height:1.2;margin:0 0 8px;font-weight:600}
+h2{font:600 15px/1.3 Inter,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;margin:44px 0 10px;color:var(--mut)}
+.meta{font:14px Inter,system-ui,sans-serif;color:var(--mut);margin-bottom:28px}
+.abstract{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:18px 20px;font-size:16px}
+.key{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:22px 0}
+.key div{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:12px 14px}
+.key b{display:block;font:600 26px Inter,system-ui,sans-serif}
+.key span{font:13px Inter,system-ui,sans-serif;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font:14px Inter,system-ui,sans-serif;margin:12px 0 4px}
+th,td{text-align:right;padding:6px 8px;border-bottom:1px solid var(--rule)}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--mut);font-weight:600}
+tr.tot td{font-weight:600;border-top:2px solid var(--rule)}
+.cap{font:13px Inter,system-ui,sans-serif;color:var(--mut);margin:4px 0 18px}
+.tablewrap{overflow-x:auto}
+svg{width:100%;height:auto;display:block;margin:10px 0}
+svg .grid{stroke:var(--grid)} svg .ax{font:12px Inter,system-ui,sans-serif;fill:var(--mut)}
+svg .val{font:11px Inter,system-ui,sans-serif;fill:var(--fg)} svg .inbar{font:600 12px Inter,system-ui,sans-serif;fill:#fff}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:12px;overflow-x:auto;font-size:13px}
+code{font-size:14px} a{color:var(--c2)}
+.ex{font:13px/1.5 ui-monospace,Menlo,monospace;background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:10px 12px;margin:8px 0}
+.ex span{color:var(--mut)}
+</style></head><body><main>
+<h1>Zero-Shot LLM Correction of Children's Speech Recognition: A Follow-Up on CHSER</h1>
+<div class="meta">Aditya Garg · October 2026 · <a href="https://github.com/Lombergine/chser-zero-shot">code and outputs</a></div>
+
+<div class="abstract"><b>Abstract.</b> CHSER (Balaji Shankar et al., Interspeech 2025) reports that zero-shot prompting of GPT-4o mini raised word error rate on child speech from 30.5% to 42.1%, which suggests that generative error correction needs fine-tuning or examples. I test whether that holds for a larger model. Using the paper's prompt templates and scoring code, I ran Claude Opus 5.5 zero-shot on a stratified sample of 600 test utterances. With the N-best prompt, the source-weighted WER fell from 31.4% to 23.0% (change -8.4 points, 95% CI -10.3 to -6.7), a 27% relative reduction, close to the paper's fine-tuned Flan-T5 result of 21.8%. Without the other hypotheses the gain was small (-2.5 points). Insertions were the error type least reduced, which agrees with the paper's error analysis. Most remaining insertions sit at utterance boundaries, concentrated in the OGI spontaneous subset, where the reference and the recognized audio appear to cover different spans. A text-only corrector cannot remove those. The outputs were produced in batches of fifty utterances per model context, so the result should be confirmed with independent API calls before it is treated as settled.</div>
+
+<div class="key">
+<div><b>31.4%</b><span>Whisper baseline WER (sample, weighted)</span></div>
+<div><b>23.0%</b><span>after zero-shot N-best correction</span></div>
+<div><b>27%</b><span>relative reduction</span></div>
+<div><b>42.1%</b><span>paper: zero-shot GPT-4o mini</span></div>
+</div>
+
+<h2>1. Question</h2>
+<p>CHSER pairs 200K Whisper-base.en hypotheses with human transcripts from five child speech corpora. Its fine-tuned Flan-T5 corrector reached 21.8% WER on the test split, from a 30.5% baseline. Table 4 of the paper adds an in-context learning experiment: GPT-4o mini scored 42.1% with no examples and 27.3% with one example. The zero-shot condition made transcripts worse.</p>
+<p>The question here is narrow. Does zero-shot correction fail because zero-shot correction cannot work on child speech, or because of the model that was tested? A stronger model with the same prompt is the cheapest way to separate the two.</p>
+
+<h2>2. Data and sample</h2>
+<p>The released test file (<code>dataset/test/hyp.json</code>, 26,687 utterances) carries five Whisper hypotheses and one reference per utterance but no corpus label. I assumed the file is ordered as in the paper's Table 1 and split it into contiguous blocks of the published sizes. The baseline WER of each block reproduces the published per-corpus baseline to within 0.6 points (Table 1), so the assignment is very likely correct.</p>
+<div class="tablewrap"><table><tr><th>Corpus</th><th>Paper baseline</th><th>Recomputed baseline</th></tr><tr><td>MyST</td><td>28.1</td><td>28.2</td></tr><tr><td>CMU Kids</td><td>18.7</td><td>18.9</td></tr><tr><td>OGI Spont.</td><td>40.6</td><td>40.7</td></tr><tr><td>OGI Scripted</td><td>26.2</td><td>26.7</td></tr><tr><td>OCSC</td><td>43.1</td><td>43.7</td></tr><tr class='tot'><td>All</td><td>30.5</td><td>30.8</td></tr></table></div>
+<p class="cap">Table 1. Baseline WER (%) of Whisper's top hypothesis on the full test split. Recomputed with jiwer on the released file.</p>
+<p>I drew 600 utterances without replacement, 150 each from MyST and OCSC and 100 from each other corpus (seed 20261003). Per-corpus WER on the sample is weighted back to the full test split by each corpus's share of reference words, which gives a sample baseline of 31.4% against 30.8% on the full split.</p>
+
+<h2>3. Method</h2>
+<p>Two prompts were taken verbatim from <code>templates/H2T-LoRA.json</code> in the CHSER repository. The N-best prompt shows the top hypothesis and the four alternatives. The 1-best prompt shows only the top hypothesis. The model was Claude Opus 5.5, with no examples and no fine-tuning, and the reference transcripts were moved out of reach of the model during generation.</p>
+<p>Outputs were scored with an exact copy of the paper's normalization from <code>in_context_learning.py</code>. As a check, I also scored them with a second normalization that converts digits to words and splits hyphenated numbers on both sides. The two agree to within 0.15 points, so only the first is reported. Confidence intervals come from a paired bootstrap with 2,000 draws, resampling utterances within each corpus.</p>
+
+<h2>4. Results</h2>
+<svg viewBox="0 0 680 300" role="img" aria-label="WER by source and condition"><line x1="44" x2="670" y1="244.0" y2="244.0" class="grid"/><text x="38" y="248.0" class="ax" text-anchor="end">0</text><line x1="44" x2="670" y1="198.4" y2="198.4" class="grid"/><text x="38" y="202.4" class="ax" text-anchor="end">10</text><line x1="44" x2="670" y1="152.8" y2="152.8" class="grid"/><text x="38" y="156.8" class="ax" text-anchor="end">20</text><line x1="44" x2="670" y1="107.2" y2="107.2" class="grid"/><text x="38" y="111.2" class="ax" text-anchor="end">30</text><line x1="44" x2="670" y1="61.6" y2="61.6" class="grid"/><text x="38" y="65.6" class="ax" text-anchor="end">40</text><line x1="44" x2="670" y1="16.0" y2="16.0" class="grid"/><text x="38" y="20.0" class="ax" text-anchor="end">50</text><rect x="59.0" y="114.3" width="29.8" height="129.7" fill="var(--c0)" rx="2"><title>MyST: 28.4%</title></rect><text x="73.9" y="110.3" class="val" text-anchor="middle">28</text><rect x="90.3" y="123.6" width="29.8" height="120.4" fill="var(--c1)" rx="2"><title>MyST: 26.4%</title></rect><text x="105.2" y="119.6" class="val" text-anchor="middle">26</text><rect x="121.6" y="149.3" width="29.8" height="94.7" fill="var(--c2)" rx="2"><title>MyST: 20.8%</title></rect><text x="136.5" y="145.3" class="val" text-anchor="middle">21</text><text x="106.0" y="262" class="ax" text-anchor="middle">MyST</text><rect x="184.2" y="153.0" width="29.8" height="91.0" fill="var(--c0)" rx="2"><title>CMU Kids: 19.9%</title></rect><text x="199.1" y="149.0" class="val" text-anchor="middle">20</text><rect x="215.5" y="177.4" width="29.8" height="66.6" fill="var(--c1)" rx="2"><title>CMU Kids: 14.6%</title></rect><text x="230.4" y="173.4" class="val" text-anchor="middle">15</text><rect x="246.8" y="185.8" width="29.8" height="58.2" fill="var(--c2)" rx="2"><title>CMU Kids: 12.8%</title></rect><text x="261.7" y="181.8" class="val" text-anchor="middle">13</text><text x="231.2" y="262" class="ax" text-anchor="middle">CMU Kids</text><rect x="309.4" y="56.5" width="29.8" height="187.5" fill="var(--c0)" rx="2"><title>OGI Spont.: 41.1%</title></rect><text x="324.3" y="52.5" class="val" text-anchor="middle">41</text><rect x="340.7" y="78.9" width="29.8" height="165.1" fill="var(--c1)" rx="2"><title>OGI Spont.: 36.2%</title></rect><text x="355.6" y="74.9" class="val" text-anchor="middle">36</text><rect x="372.0" y="117.6" width="29.8" height="126.4" fill="var(--c2)" rx="2"><title>OGI Spont.: 27.7%</title></rect><text x="386.9" y="113.6" class="val" text-anchor="middle">28</text><text x="356.4" y="262" class="ax" text-anchor="middle">OGI Spont.</text><rect x="434.6" y="113.6" width="29.8" height="130.4" fill="var(--c0)" rx="2"><title>OGI Scripted: 28.6%</title></rect><text x="449.5" y="109.6" class="val" text-anchor="middle">29</text><rect x="465.9" y="138.6" width="29.8" height="105.4" fill="var(--c1)" rx="2"><title>OGI Scripted: 23.1%</title></rect><text x="480.8" y="134.6" class="val" text-anchor="middle">23</text><rect x="497.2" y="163.6" width="29.8" height="80.4" fill="var(--c2)" rx="2"><title>OGI Scripted: 17.6%</title></rect><text x="512.1" y="159.6" class="val" text-anchor="middle">18</text><text x="481.6" y="262" class="ax" text-anchor="middle">OGI Scripted</text><rect x="559.8" y="38.3" width="29.8" height="205.7" fill="var(--c0)" rx="2"><title>OCSC: 45.1%</title></rect><text x="574.7" y="34.3" class="val" text-anchor="middle">45</text><rect x="591.1" y="43.3" width="29.8" height="200.7" fill="var(--c1)" rx="2"><title>OCSC: 44.0%</title></rect><text x="606.0" y="39.3" class="val" text-anchor="middle">44</text><rect x="622.4" y="73.4" width="29.8" height="170.6" fill="var(--c2)" rx="2"><title>OCSC: 37.4%</title></rect><text x="637.3" y="69.4" class="val" text-anchor="middle">37</text><text x="606.8" y="262" class="ax" text-anchor="middle">OCSC</text><text x="12" y="130.0" class="ax" transform="rotate(-90 12 130.0)" text-anchor="middle">WER (%)</text><rect x="44" y="280" width="12" height="12" fill="var(--c0)" rx="2"/><text x="61" y="290" class="ax">Whisper 1-best</text><rect x="244" y="280" width="12" height="12" fill="var(--c1)" rx="2"/><text x="261" y="290" class="ax">Claude, 1-best prompt</text><rect x="444" y="280" width="12" height="12" fill="var(--c2)" rx="2"/><text x="461" y="290" class="ax">Claude, N-best prompt</text></svg>
+<p class="cap">Figure 1. WER by corpus on the 600-utterance sample.</p>
+<div class="tablewrap"><table><tr><th>Corpus</th><th>n</th><th>Whisper</th><th>Claude 1-best</th><th>Claude N-best</th></tr><tr><td>MyST</td><td>150</td><td>28.4</td><td>26.4</td><td>20.8</td></tr><tr><td>CMU Kids</td><td>100</td><td>19.9</td><td>14.6</td><td>12.8</td></tr><tr><td>OGI Spont.</td><td>100</td><td>41.1</td><td>36.2</td><td>27.7</td></tr><tr><td>OGI Scripted</td><td>100</td><td>28.6</td><td>23.1</td><td>17.6</td></tr><tr><td>OCSC</td><td>150</td><td>45.1</td><td>44.0</td><td>37.4</td></tr><tr class='tot'><td>Weighted to full test</td><td>600</td><td>31.4</td><td>28.9</td><td>23.0</td></tr></table></div>
+<p class="cap">Table 2. WER (%) by corpus, paper normalization. Change against Whisper: 1-best -2.5 points (95% CI -3.5 to -1.6); N-best -8.4 points (95% CI -10.3 to -6.7).</p>
+<p>The N-best prompt lowered WER in every corpus. The largest drop was in the OGI spontaneous subset, from 41.1% to 27.7%. OCSC, the conversational CHILDES corpus, improved least in relative terms and remains above 37%.</p>
+<p>Almost all of the gain depends on the alternative hypotheses. Shown only the top hypothesis, the model changed 279 of 600 utterances and lowered WER by 2.5 points. Shown all five, it changed 350, improving 262 and worsening 45. It also followed the instruction to draw words from the hypotheses: 0.9% of its output words appear in none of the five, against 3.8% under the 1-best prompt.</p>
+
+<h2>5. Error types</h2>
+<svg viewBox="0 0 680 190" role="img" aria-label="Error counts by type"><text x="162" y="32" class="ax" text-anchor="end">Whisper 1-best</text><rect x="170.0" y="14" width="205.9" height="28" fill="var(--s)"><title>S: 1312</title></rect><text x="273.0" y="33" class="inbar" text-anchor="middle">1312</text><rect x="375.9" y="14" width="189.0" height="28" fill="var(--d)"><title>D: 1204</title></rect><text x="470.4" y="33" class="inbar" text-anchor="middle">1204</text><rect x="564.9" y="14" width="95.1" height="28" fill="var(--i)"><title>I: 606</title></rect><text x="612.4" y="33" class="inbar" text-anchor="middle">606</text><text x="162" y="76" class="ax" text-anchor="end">Claude, 1-best prompt</text><rect x="170.0" y="58" width="169.3" height="28" fill="var(--s)"><title>S: 1079</title></rect><text x="254.7" y="77" class="inbar" text-anchor="middle">1079</text><rect x="339.3" y="58" width="173.0" height="28" fill="var(--d)"><title>D: 1102</title></rect><text x="425.8" y="77" class="inbar" text-anchor="middle">1102</text><rect x="512.3" y="58" width="94.5" height="28" fill="var(--i)"><title>I: 602</title></rect><text x="559.6" y="77" class="inbar" text-anchor="middle">602</text><text x="162" y="120" class="ax" text-anchor="end">Claude, N-best prompt</text><rect x="170.0" y="102" width="124.9" height="28" fill="var(--s)"><title>S: 796</title></rect><text x="232.5" y="121" class="inbar" text-anchor="middle">796</text><rect x="294.9" y="102" width="140.9" height="28" fill="var(--d)"><title>D: 898</title></rect><text x="365.4" y="121" class="inbar" text-anchor="middle">898</text><rect x="435.9" y="102" width="77.7" height="28" fill="var(--i)"><title>I: 495</title></rect><text x="474.7" y="121" class="inbar" text-anchor="middle">495</text><rect x="170" y="172" width="12" height="12" fill="var(--s)" rx="2"/><text x="187" y="182" class="ax">Substitutions</text><rect x="310" y="172" width="12" height="12" fill="var(--d)" rx="2"/><text x="327" y="182" class="ax">Deletions</text><rect x="450" y="172" width="12" height="12" fill="var(--i)" rx="2"/><text x="467" y="182" class="ax">Insertions</text></svg>
+<p class="cap">Figure 2. Word errors on the sample by type (pooled counts).</p>
+<div class="tablewrap"><table><tr><th>Error type</th><th>Whisper</th><th>Claude 1-best</th><th>Claude N-best</th></tr><tr><td>Substitutions</td><td>1312</td><td>1079 (-18%)</td><td>796 (-39%)</td></tr><tr><td>Deletions</td><td>1204</td><td>1102 (-8%)</td><td>898 (-25%)</td></tr><tr><td>Insertions</td><td>606</td><td>602 (-1%)</td><td>495 (-18%)</td></tr></table></div>
+<p class="cap">Table 3. Pooled error counts on the sample, with change against Whisper.</p>
+<p>Substitutions fell the most. Insertions fell the least, and under the 1-best prompt they did not fall at all. CHSER's error analysis reported the same weakness for its fine-tuned models, which improved substitutions and deletions but struggled with insertions. The pattern therefore seems to belong to the task and the data more than to any one corrector.</p>
+
+<h2>6. Where the insertions are</h2>
+<p>I split insertions by position in the alignment. In the Whisper output, 334 of 606 inserted words sit at the very start or end of an utterance. After N-best correction, 316 boundary insertions remain, a drop of 5%, while insertions inside the utterance fell from 272 to 179, a drop of 34%. Just over half of all remaining insertions (258 of 495) come from the OGI spontaneous subset, and 199 of those are at boundaries.</p>
+<p>Reading these cases suggests a cause. In OGI spontaneous speech the hypotheses often contain a phrase before or after the span the reference covers, as in the example below. If the audio segment and the reference cover different stretches of a longer monologue, the extra words are real speech that the transcript leaves out, and no model that sees only text can know to delete them.</p>
+<div class="ex"><span>REF</span> watch the sunset blue red yellow orange just ... stuff like that<br><span>OUT</span> yeah no that was nice yeah watch the sunset blue red yellow ...</div>
+<p>A related floor exists for deletions. OGI spontaneous references transcribe the filled pause <i>uhm</i> 343 times in the full test split, about 2% of reference words, while Whisper's top hypotheses contain filled pauses only 15 times. A text corrector has no evidence of where a pause occurred, so these words stay deleted.</p>
+
+<h2>7. Checks</h2>
+<p><b>Memorization.</b> The CHSER test split has been public on GitHub since 2025, so a model could in principle have seen the references. Of the 297 sampled utterances whose reference contains a word found in none of the five hypotheses, the N-best output matched the reference exactly in 9 cases (3%). The model also never produced the CHILDES markers <i>xxx</i> or <i>www</i>, which appear in the references. Neither result points to recall of the test transcripts, though neither rules it out.</p>
+<p><b>Computation.</b> WER was recomputed with a separate implementation (editdistance on lowercase tokens, sharing no code with the main script). It gives weighted WERs of 31.3%, 28.8% and 22.9% for the three conditions, each within 0.15 points of Table 2.</p>
+
+<h2>8. Limitations</h2>
+<p>The outputs were not generated by independent API calls. They were produced by model instances that each processed a batch of fifty utterances, and each batch came from a single corpus. A model that sees fifty utterances at once can pick up the transcription style of the corpus, such as lowercase text and spelled-out numbers, and that is a mild form of in-context learning. The zero-shot label is therefore approximate. The included <code>run_claude.py</code> sends one request per utterance and is the right way to confirm the result.</p>
+<p>The run was done once, at an uncontrolled sampling temperature, on 2.2% of the test split. Claude Opus 5.5 is a much larger model than GPT-4o mini, so this result says nothing about whether the paper's zero-shot number is wrong; the two experiments differ in the model.</p>
+<p>One detail of the paper's scorer may matter for its zero-shot number. The normalization deletes every digit and keeps only the first line of a response. A chat model that writes "33" or begins with a sentence such as "Here is the corrected transcription:" followed by a line break would be scored on an empty or wrong string. Whether that affected the GPT-4o mini outputs could be checked directly from the saved responses.</p>
+
+<h2>9. Reproduce</h2>
+<pre>pip install jiwer num2words anthropic
+python evaluate.py                      # scores the saved outputs (Tables 2 and 3)
+export ANTHROPIC_API_KEY=...
+python run_claude.py --data sample.json --prompt nbest --out outputs/api_nbest.jsonl
+python score_api.py outputs/api_nbest.jsonl</pre>
+
+<h2>Reference</h2>
+<p>Balaji Shankar, N., Wang, Z., Zhang, K., Shi, M., and Alwan, A. (2025). CHSER: A dataset and case study on generative speech error correction for child ASR. <i>Proc. Interspeech 2025</i>, 2895. <a href="https://arxiv.org/abs/2505.18463">arXiv:2505.18463</a>. Data and code: <a href="https://github.com/balaji1312/CHSER">github.com/balaji1312/CHSER</a>.</p>
+</main></body></html>
